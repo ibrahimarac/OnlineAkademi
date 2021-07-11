@@ -31,4 +31,17 @@ namespace OnlineAkademi.Core.Domain.Common
         Male,
         Female
     }
+
+    public enum MaterialType
+    {
+        Pdf,
+        Video,
+        Link
+    }
+
+    public enum TrainerType
+    {
+        Inside,
+        Outside
+    }
 }

@@ -1,23 +1,20 @@
 ﻿using OnlineAkademi.Core.Domain.Abstractions;
+using OnlineAkademi.Core.Domain.Common;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace OnlineAkademi.Core.Domain.Entities
 {
-    public class Course : BaseEntity, IPermanent, ITrackable
+    public class Trainer : BaseEntity, ITrackable, IPermanent
     {
-        public int CategoryId { get; set; }
+        public string FirstName { get; set; }
 
-        public Category Category { get; set; }
+        public string LastName { get; set; }
 
-        public string Name { get; set; }
+        public int Experience { get; set; }
 
-        public decimal Price { get; set; }
-
-        public int Duration { get; set; }
-
-        public int Quota { get; set; }
+        public TrainerType TrainerType { get; set; }
 
         public string CreateUser { get; set; }
 
@@ -30,7 +27,5 @@ namespace OnlineAkademi.Core.Domain.Entities
         public bool? IsActive { get; set; }
 
         public ICollection<TrainerInCourse> TrainerInCourses { get; set; }
-
-        public ICollection<CourseMaterial> Materials { get; set; }
     }
 }

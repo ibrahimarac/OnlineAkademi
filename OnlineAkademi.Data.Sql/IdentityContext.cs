@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using OnlineAkademi.Core.Domain.Entities.Identity;
 using OnlineAkademi.Data.Sql.DbMappings.Identity;
 
-namespace OnlineAkademi.Data.Sql.Identity
+namespace OnlineAkademi.Data.Sql
 {
     public class IdentityContext:IdentityDbContext<AppUser>
     {

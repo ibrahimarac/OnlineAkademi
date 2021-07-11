@@ -48,6 +48,11 @@ namespace OnlineAkademi.Data.Sql.DbMappings
             builder.Property(c => c.IsActive)
                 .HasDefaultValueSql("1");
 
+            //Course and CourseMaterial relationship
+            builder.HasMany(co => co.Materials)
+                .WithOne(m => m.Course)
+                .HasForeignKey("CourseId");
+
         }
     }
 }

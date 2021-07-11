@@ -26,6 +26,12 @@ namespace OnlineAkademi.Data.Sql
 
             modelBuilder.ApplyConfiguration(new CourseMapping());
 
+            modelBuilder.ApplyConfiguration(new CourseMaterialMapping());
+
+            modelBuilder.ApplyConfiguration(new TrainerMapping());
+
+            modelBuilder.ApplyConfiguration(new TrainerInCourseMapping());
+
             modelBuilder.ApplyConfiguration(new ErrorMapping());
 
             modelBuilder.ApplyConfiguration(new LogMapping());
