@@ -11,7 +11,8 @@ namespace OnlineAkademi.Data.Sql
 {
     public class AkademiContext:DbContext
     {
-        public AkademiContext(DbContextOptions opt):base(opt){
+        public AkademiContext(DbContextOptions<AkademiContext> opt):base(opt){
+            Database.EnsureCreated();
         }
 
         public DbSet<Category> Categories { get; set; }

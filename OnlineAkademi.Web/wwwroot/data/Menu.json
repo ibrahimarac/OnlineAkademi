@@ -1,0 +1,46 @@
+[
+  {
+    "title": "Ana Sayfa",
+    "controller": "Home",
+    "action": "Index",
+    "roles": [
+      "guest",
+      "admin",
+      "user"
+    ]
+  },
+  {
+    "title": "Kategori Ýþlemleri",
+    "roles": [
+      "admin"
+    ],
+    "submenu": [
+      {
+        "title": "Yeni Kategori",
+        "controller": "Category",
+        "action": "Create"
+      },
+      {
+        "title": "Yeni Kategori",
+        "controller": "Category",
+        "action": "Create"
+      }
+    ]
+  },
+  {
+    "title": "Oturum Aç",
+    "controller": "Account",
+    "action": "Login",
+    "roles": [
+      "guest"
+    ]
+  },
+  {
+    "title": "Güvenli Çýkýþ",
+    "controller": "Account",
+    "action": "Logout",
+    "roles": [
+      "admin,user"
+    ]
+  }  
+]

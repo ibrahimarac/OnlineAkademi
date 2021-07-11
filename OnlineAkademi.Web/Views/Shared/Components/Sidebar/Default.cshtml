@@ -1,0 +1,45 @@
+﻿@model IEnumerable<OnlineAkademi.Web.Models.Menu>
+
+@{
+    foreach (var menu in Model)
+    {
+    <li class="nav-item">
+        @if (menu.SubMenus == null)
+        {
+            <a asp-controller="@menu.Controller" asp-action="@menu.Action" class="nav-link">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                    @menu.Title
+                </p>
+            </a>
+        }
+        else
+        {
+            <a class="nav-link">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                    @menu.Title
+                </p>
+            </a>
+        }
+
+
+        @if (menu.SubMenus != null)
+        {
+            <ul class="nav nav-treeview">
+                @foreach (var subMenu in menu.SubMenus)
+                {
+                    <li class="nav-item">
+                        <a asp-controller="@subMenu.Controller" asp-action="@subMenu.Action"
+                           class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>@subMenu.Title</p>
+                        </a>
+                    </li>
+                }
+            </ul>
+        }
+    </li>
+    }
+}
+
