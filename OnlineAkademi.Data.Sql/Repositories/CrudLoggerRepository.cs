@@ -8,7 +8,7 @@ namespace OnlineAkademi.Data.Sql.Repositories
 {
     public class CrudLoggerRepository:Repository<Log>, ICrudLoggerRepository
     {
-        public CrudLoggerRepository(IlknurContext context):base(context)
+        public CrudLoggerRepository(AkademiContext context):base(context)
         {
             
         }

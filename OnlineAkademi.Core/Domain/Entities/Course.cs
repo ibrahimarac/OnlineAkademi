@@ -1,18 +1,23 @@
 ﻿using OnlineAkademi.Core.Domain.Abstractions;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
 namespace OnlineAkademi.Core.Domain.Entities
 {
-    public class Category:BaseEntity,IPermanent,ITrackable
-    {   
+    public class Course : BaseEntity, IPermanent, ITrackable
+    {
+        public int CategoryId { get; set; }
+
+        public Category Category { get; set; }
+
         public string Name { get; set; }
 
-        public bool? IsActive { get; set; }
+        public decimal Price { get; set; }
+
+        public int Duration { get; set; }
+
+        public int Quota { get; set; }
 
         public string CreateUser { get; set; }
 
@@ -22,6 +27,6 @@ namespace OnlineAkademi.Core.Domain.Entities
 
         public DateTime LastupDate { get; set; }
 
-        public ICollection<Course> Courses { get; set; }
+        public bool? IsActive { get; set; }
     }
 }

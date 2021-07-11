@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace OnlineAkademi.Data.Sql.Migrations
 {
-    [DbContext(typeof(IlknurContext))]
+    [DbContext(typeof(AkademiContext))]
     partial class IlknurContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

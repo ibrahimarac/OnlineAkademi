@@ -14,7 +14,7 @@ namespace OnlineAkademi.Web.MvcMiddlewares
     {
         public static IServiceCollection AddLocalDbContext(this IServiceCollection services, IConfiguration configuration)
         {
-            return services.AddDbContext<IlknurContext>(opt =>
+            return services.AddDbContext<AkademiContext>(opt =>
             {
                 opt.UseSqlServer(configuration.GetConnectionString("LocalSql"));
             });

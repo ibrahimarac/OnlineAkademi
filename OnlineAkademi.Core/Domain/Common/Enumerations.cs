@@ -25,4 +25,10 @@ namespace OnlineAkademi.Core.Domain.Common
         Error,
         Warning
     }
+
+    public enum Gender
+    {
+        Male,
+        Female
+    }
 }

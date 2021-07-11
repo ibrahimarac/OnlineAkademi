@@ -8,16 +8,28 @@ using System.Threading.Tasks;
 
 namespace OnlineAkademi.Data.Sql.DbMappings
 {
-    public class CategoryMapping : BaseEntityMapping<Category>
+    public class CourseMapping : BaseEntityMapping<Course>
     {
-        public override void Configure(EntityTypeBuilder<Category> builder)
+        public override void Configure(EntityTypeBuilder<Course> builder)
         {
             base.Configure(builder);
 
             builder.Property(c => c.Name)
-                .HasColumnType("varchar(30)")
+                .HasColumnType("varchar(150)")
                 .IsRequired()
-                .HasColumnName("CategoryName");
+                .HasColumnName("CourseName");
+
+            builder.Property(c => c.Duration)
+                .IsRequired()
+                .HasColumnName("Duration");
+
+            builder.Property(c => c.Price)
+                .IsRequired()
+                .HasColumnName("Price");
+
+            builder.Property(c => c.Quota)
+                .IsRequired()
+                .HasColumnName("Quota");
 
             builder.Property(c => c.LastupUser)
                 .HasColumnType("varchar(10)")
@@ -35,11 +47,6 @@ namespace OnlineAkademi.Data.Sql.DbMappings
 
             builder.Property(c => c.IsActive)
                 .HasDefaultValueSql("1");
-
-            //Relation with Course
-            builder.HasMany(cat => cat.Courses)
-                .WithOne(co => co.Category)
-                .HasForeignKey(co => co.CategoryId);
 
         }
     }

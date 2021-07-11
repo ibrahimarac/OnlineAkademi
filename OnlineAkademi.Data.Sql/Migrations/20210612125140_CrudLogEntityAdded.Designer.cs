@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace OnlineAkademi.Data.Sql.Migrations
 {
-    [DbContext(typeof(IlknurContext))]
+    [DbContext(typeof(AkademiContext))]
     [Migration("20210612125140_CrudLogEntityAdded")]
     partial class CrudLogEntityAdded
     {

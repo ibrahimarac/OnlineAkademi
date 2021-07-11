@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace OnlineAkademi.Data.Sql
 {
-    public class IlknurContext:DbContext
+    public class AkademiContext:DbContext
     {
-        public IlknurContext(DbContextOptions opt):base(opt){
+        public AkademiContext(DbContextOptions opt):base(opt){
         }
 
         public DbSet<Category> Categories { get; set; }
@@ -20,13 +20,22 @@ namespace OnlineAkademi.Data.Sql
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //mapping konfigürasyonları uygulanıyor
+
             modelBuilder.ApplyConfiguration(new CategoryMapping());
+
+            modelBuilder.ApplyConfiguration(new CourseMapping());
 
             modelBuilder.ApplyConfiguration(new ErrorMapping());
 
             modelBuilder.ApplyConfiguration(new LogMapping());
 
+
+            //Veritabanına ait varsayılan veriler yükleniyor
+
             modelBuilder.SeedCategories();
+
+            modelBuilder.SeedCourses();
         }
 
 

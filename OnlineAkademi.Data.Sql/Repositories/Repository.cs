@@ -13,10 +13,10 @@ namespace OnlineAkademi.Data.Sql.Repositories
     public class Repository<TEntity> : IRepository<TEntity>
         where TEntity:class
     {
-        protected readonly IlknurContext Context;
+        protected readonly AkademiContext Context;
         protected readonly DbSet<TEntity> DbSet;
 
-        public Repository(IlknurContext context)
+        public Repository(AkademiContext context)
         {
             Context = context ?? throw new ArgumentNullException($"{nameof(context)} DependencyInjection'a servis olarak kaydedilmemiş.");
             DbSet = Context.Set<TEntity>();

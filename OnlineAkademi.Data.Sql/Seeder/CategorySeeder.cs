@@ -16,7 +16,7 @@ namespace OnlineAkademi.Data.Sql.Seeder
                     new Category
                     {
                         Id=1,
-                        Name="Kategori 1",
+                        Name="Online",
                         CreateUser="admin",
                         LastupUser="admin",
                         CreateDate=DateTime.Now,
@@ -25,7 +25,7 @@ namespace OnlineAkademi.Data.Sql.Seeder
                     new Category
                     {
                         Id = 2,
-                        Name = "Kategori 2",
+                        Name = "Yüz Yüze Eğitim",
                         CreateUser = "admin",
                         LastupUser = "admin",
                         CreateDate = DateTime.Now,
@@ -34,7 +34,25 @@ namespace OnlineAkademi.Data.Sql.Seeder
                     new Category
                     {
                         Id = 3,
-                        Name = "Kategori 3",
+                        Name = "Sunum",
+                        CreateUser = "admin",
+                        LastupUser = "admin",
+                        CreateDate = DateTime.Now,
+                        LastupDate = DateTime.Now
+                    },
+                    new Category
+                    {
+                        Id = 4,
+                        Name = "Makale",
+                        CreateUser = "admin",
+                        LastupUser = "admin",
+                        CreateDate = DateTime.Now,
+                        LastupDate = DateTime.Now
+                    },
+                    new Category
+                    {
+                        Id = 5,
+                        Name = "Mini Proje",
                         CreateUser = "admin",
                         LastupUser = "admin",
                         CreateDate = DateTime.Now,

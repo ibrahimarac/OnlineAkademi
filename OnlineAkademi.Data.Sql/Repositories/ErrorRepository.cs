@@ -8,7 +8,7 @@ namespace OnlineAkademi.Data.Sql.Repositories
 {
     public class ErrorRepository:Repository<Error>,IErrorRepository
     {
-        public ErrorRepository(IlknurContext context):base(context)
+        public ErrorRepository(AkademiContext context):base(context)
         {
 
         }

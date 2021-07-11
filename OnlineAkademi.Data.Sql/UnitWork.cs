@@ -19,7 +19,7 @@ namespace OnlineAkademi.Data.Sql
         private readonly ICrudOperationLogger _crudLogger;
 
         public UnitWork(
-                            IlknurContext context,
+                            AkademiContext context,
                             ICategoryRepository categoryRepository,
                             IErrorRepository errorRepository,
                             ICrudLoggerRepository crudLoggerRepository,
@@ -35,7 +35,7 @@ namespace OnlineAkademi.Data.Sql
             Context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public IlknurContext Context { get; }
+        public AkademiContext Context { get; }
 
 
         public ICategoryRepository CategoryRepo { get; }

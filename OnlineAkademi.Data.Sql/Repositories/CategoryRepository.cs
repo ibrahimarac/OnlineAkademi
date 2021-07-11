@@ -11,7 +11,7 @@ namespace OnlineAkademi.Data.Sql.Repositories
 {
     public class CategoryRepository : Repository<Category>,ICategoryRepository
     {
-        public CategoryRepository(IlknurContext context):base(context)
+        public CategoryRepository(AkademiContext context):base(context)
         {
 
         }
