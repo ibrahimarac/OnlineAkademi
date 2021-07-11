@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <log>
+    <entity>Category</entity>
+    <old>{"Name":"Kategori 5","CreateUser":"admin","LastupUser":"admin","CreateDate":"2021-06-12T15:56:39.5792553","LastupDate":"2021-06-12T15:56:39.5792584","IsActive":true,"Id":16}</old>
+    <new>{"Name":"Kategoriii 5","CreateUser":"admin","LastupUser":"admin","CreateDate":"2021-06-12T15:56:39.5792553","LastupDate":"2021-06-12T16:27:26.019836+03:00","IsActive":false,"Id":16}</new>
+    <user>admin</user>
+    <date>2021-06-12T16:27:26.4502868+03:00</date>
+  </log>
+</root>

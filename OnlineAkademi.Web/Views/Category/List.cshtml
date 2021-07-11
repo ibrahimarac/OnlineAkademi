@@ -1,0 +1,67 @@
+﻿@model IEnumerable<OnlineAkademi.Web.Models.VM.CategoryVM>
+
+@{
+    ViewData["Title"] = "Kategori Listesi";
+}
+
+<h1>Kategoriler</h1>
+
+<p class="text-right">
+    <a asp-controller="Category" asp-action="Create" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+</p>
+<table class="table table-bordered table-hover table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @((item.IsActive)?"Aktif":"Pasif")
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-controller="Category" asp-route-id="@item.Id"
+                       class="btn btn-success">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                    <a href="#" class="btn btn-danger" data-id="@item.Id">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+
+    <script>
+        $().ready(function () {
+            $(".btn-danger").click(function () {
+                var deleteBtn=$(this)
+                $.ShowConfirm('Uyarı!', 'Kategori tamamen silinecek. Devam edilsin mi?', 'Sil', function () {
+                    $.AjaxDelete(
+                        deleteBtn,
+                        '@Url.Action("Delete","Category")'
+                    )
+                })
+
+            })
+        })
+          
+
+    </script>
+
+}

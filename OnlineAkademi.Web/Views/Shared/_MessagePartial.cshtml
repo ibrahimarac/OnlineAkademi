@@ -1,0 +1,22 @@
+﻿@using OnlineAkademi.Core.Domain.Common
+
+
+<script>
+
+    @{
+        if(TempData[Constants.TempData.SuccessKey]!=null)
+        {
+            @:$.ShowSuccess('@Html.Raw(TempData[Constants.TempData.TitleKey])', '@Html.Raw(TempData[Constants.TempData.SuccessKey])')
+        }
+        else if (TempData[Constants.TempData.ErrorKey] != null)
+        {
+            @:$.ShowError('@Html.Raw(Constants.TempData.TitleKey)', '@Html.Raw(TempData[Constants.TempData.ErrorKey])')
+        }
+         else if (TempData[Constants.TempData.WarningKey] != null)
+        {
+            @:$.ShowWarning('@Html.Raw(Constants.TempData.TitleKey)','@Html.Raw(TempData[Constants.TempData.WarningKey])')
+        }
+    }
+
+</script>
+

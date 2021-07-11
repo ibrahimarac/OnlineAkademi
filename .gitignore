@@ -1,0 +1,4 @@
+# bin klasörü altında yer alan tüm dosyaları izlemeden çıkar
+*/bin
+# obj klasörü altında yer alan tüm dosyaları izlemeden çıkar
+*/obj

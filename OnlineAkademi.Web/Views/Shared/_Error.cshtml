@@ -1,0 +1,27 @@
+﻿@model OnlineAkademi.Web.Models.VM.ErrorVM
+
+@{
+    ViewData["Title"] = "Http500";
+}
+
+<div class="alert alert-danger">
+    <h2>Hata</h2>
+    <p>@Model.Message</p>
+</div>
+
+<div class="alert alert-danger">
+    <h2>Hata Kodu</h2>
+    <p>@Model.StatusCode</p>
+</div>
+
+<div class="alert alert-danger">
+    <h2>Talep Edilen Adres</h2>
+    <p>@Model.Url</p>
+</div>
+
+<div class="alert alert-danger">
+    <h2>İstek Türü</h2>
+    <p>@Model.RequestType</p>
+</div>
+
+
