@@ -53,6 +53,7 @@ namespace OnlineAkademi.Data.Sql.DbMappings
                 .WithOne(m => m.Course)
                 .HasForeignKey("CourseId");
 
+            builder.ToTable("Courses");
         }
     }
 }

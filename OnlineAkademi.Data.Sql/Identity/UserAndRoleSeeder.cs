@@ -19,9 +19,13 @@ namespace OnlineAkademi.Data.Sql.Identity
             {
                 await roleManager.CreateAsync(new IdentityRole("admin"));
             }
-            if (await roleManager.FindByNameAsync("user") == null)
+            if (await roleManager.FindByNameAsync("student") == null)
             {
-                await roleManager.CreateAsync(new IdentityRole("user"));
+                await roleManager.CreateAsync(new IdentityRole("student"));
+            }
+            if (await roleManager.FindByNameAsync("trainer") == null)
+            {
+                await roleManager.CreateAsync(new IdentityRole("trainer"));
             }
             if (await userManager.FindByNameAsync(adminUserName) == null)
             {

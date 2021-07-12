@@ -1,20 +1,14 @@
-﻿using OnlineAkademi.Core.Domain.Abstractions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace OnlineAkademi.Core.Domain.Entities
+namespace OnlineAkademi.Core.Domain.Dto
 {
-    public class TrainerInCourse : ITrackable, IPermanent
+    public class StudentInCourseDto
     {
-        public string TrainerId { get; set; }
+        public string StudentId { get; set; }
 
         public int CourseId { get; set; }
-
-        public Trainer Trainer { get; set; }
-
-        public Course Course { get; set; }
-
 
         public string CreateUser { get; set; }
 

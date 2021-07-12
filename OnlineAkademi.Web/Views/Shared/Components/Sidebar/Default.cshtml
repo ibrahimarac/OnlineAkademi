@@ -1,15 +1,18 @@
 ﻿@model IEnumerable<OnlineAkademi.Web.Models.Menu>
 
 @{
+    var controller=ViewContext.RouteData.Values["controller"].ToString();
+    var action= ViewContext.RouteData.Values["action"].ToString();
+
     foreach (var menu in Model)
     {
-    <li class="nav-item">
+    <li class="nav-item @((menu.SubMenus!=null)?"has-treeview":"") @((controller==menu.Controller)?"menu-open":"")">
         @if (menu.SubMenus == null)
         {
-            <a asp-controller="@menu.Controller" asp-action="@menu.Action" class="nav-link">
+            <a href="/@menu.Controller/@menu.Action" class="nav-link @((menu.Controller==controller&&menu.Action==action)?"menu-open":"")">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
-                    @menu.Title
+                    @menu.Title                    
                 </p>
             </a>
         }
@@ -19,6 +22,7 @@
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                     @menu.Title
+                    <i class="right fas fa-angle-left"></i>
                 </p>
             </a>
         }
@@ -30,8 +34,8 @@
                 @foreach (var subMenu in menu.SubMenus)
                 {
                     <li class="nav-item">
-                        <a asp-controller="@subMenu.Controller" asp-action="@subMenu.Action"
-                           class="nav-link">
+                        <a asp-controller="@menu.Controller" asp-action="@subMenu.Action"
+                           class="nav-link @((menu.Controller==controller&&subMenu.Action==action)?"active":"")">
                             <i class="far fa-circle nav-icon"></i>
                             <p>@subMenu.Title</p>
                         </a>

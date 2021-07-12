@@ -12,8 +12,4 @@
     <ProjectReference Include="..\OnlineAkademi.Core\OnlineAkademi.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Identity\" />
-  </ItemGroup>
-
 </Project>

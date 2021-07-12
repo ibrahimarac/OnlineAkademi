@@ -16,6 +16,7 @@ namespace OnlineAkademi.Data.Sql
         }
 
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Course> Courses { get; set; }
         public DbSet<Error> Errors { get; set; }
         public DbSet<Log> CrudLogs { get; set; }
 
@@ -32,6 +33,10 @@ namespace OnlineAkademi.Data.Sql
             modelBuilder.ApplyConfiguration(new TrainerMapping());
 
             modelBuilder.ApplyConfiguration(new TrainerInCourseMapping());
+
+            modelBuilder.ApplyConfiguration(new StudentMapping());
+
+            modelBuilder.ApplyConfiguration(new StudentsInCourseMapping());
 
             modelBuilder.ApplyConfiguration(new ErrorMapping());
 

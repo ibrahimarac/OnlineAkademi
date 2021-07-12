@@ -14,7 +14,7 @@ namespace OnlineAkademi.Web.Models.VM
         [Display(Name="Kategori adı")]
         public string Name { get; set; }
 
-        [Display(Name="Durumu")]
+        [Display(Name="Aktif")]
         public bool IsActive { get; set; }
     }
 }

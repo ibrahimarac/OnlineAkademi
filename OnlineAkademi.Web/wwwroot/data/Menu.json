@@ -11,19 +11,37 @@
   },
   {
     "title": "Kategori Ýþlemleri",
+    "controller": "Category",
     "roles": [
-      "admin"
+      "admin",
+      "guest"
     ],
     "submenu": [
       {
         "title": "Yeni Kategori",
-        "controller": "Category",
         "action": "Create"
       },
       {
-        "title": "Yeni Kategori",
-        "controller": "Category",
+        "title": "Kategori Düzenle",
+        "action": "List"
+      }
+    ]
+  },
+  {
+    "title": "Kurs Ýþlemleri",
+    "controller": "Course",
+    "roles": [
+      "admin",
+      "guest"
+    ],
+    "submenu": [
+      {
+        "title": "Yeni Kurs Tanýmý",
         "action": "Create"
+      },
+      {
+        "title": "Kurs Düzenle",
+        "action": "List"
       }
     ]
   },
@@ -42,5 +60,5 @@
     "roles": [
       "admin,user"
     ]
-  }  
+  }
 ]

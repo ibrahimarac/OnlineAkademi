@@ -10,6 +10,5 @@ namespace OnlineAkademi.Web.Models
     {
         public string Title { get; set; }
         public string Action { get; set; }
-        public string Controller { get; set; }
     }
 }

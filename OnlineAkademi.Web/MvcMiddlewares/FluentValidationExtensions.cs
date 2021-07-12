@@ -17,7 +17,8 @@ namespace OnlineAkademi.Web.MvcMiddlewares
             return
                 services
                     .AddFluentValidation()
-                    .AddTransient<IValidator<CategoryVM>, CategoryValidator>();
+                    .AddTransient<IValidator<CategoryVM>, CategoryValidator>()
+                    .AddTransient<IValidator<CourseVM>, CourseValidator>();
         }
     }
 }

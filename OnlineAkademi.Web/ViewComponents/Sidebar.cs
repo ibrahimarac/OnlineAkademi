@@ -17,9 +17,9 @@ namespace OnlineAkademi.Web.ViewComponents
     public class Sidebar:ViewComponent
     {
         private readonly UserManager<AppUser> _userManager;
-        private readonly IHostingEnvironment _environment;
+        private readonly IWebHostEnvironment _environment;
 
-        public Sidebar(UserManager<AppUser> userManager, IHostingEnvironment environment)
+        public Sidebar(UserManager<AppUser> userManager, IWebHostEnvironment environment)
         {
             _userManager = userManager;
             _environment = environment;

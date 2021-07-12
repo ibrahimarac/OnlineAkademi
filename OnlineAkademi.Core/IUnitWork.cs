@@ -11,6 +11,8 @@ namespace OnlineAkademi.Core
     {
         ICategoryRepository CategoryRepo { get; }
 
+        ICourseRepository CourseRepo { get; }
+
         IErrorRepository ErrorRepo { get; }
 
         ICrudLoggerRepository CrudLoggerRepo { get; set; }

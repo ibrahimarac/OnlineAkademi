@@ -13,7 +13,7 @@ namespace OnlineAkademi.Core.Domain.Entities
 
         public string Name { get; set; }
 
-        public decimal Price { get; set; }
+        public double Price { get; set; }
 
         public int Duration { get; set; }
 
@@ -30,6 +30,8 @@ namespace OnlineAkademi.Core.Domain.Entities
         public bool? IsActive { get; set; }
 
         public ICollection<TrainerInCourse> TrainerInCourses { get; set; }
+
+        public ICollection<StudentInCourse> CourseStudents { get; set; }
 
         public ICollection<CourseMaterial> Materials { get; set; }
     }
