@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="DbMappings\CourseMapping.cs~RF2e91d0.TMP" />
     <None Remove="DbMappings\CourseMaterialMapping.cs~RF585b4c29.TMP" />
   </ItemGroup>
 

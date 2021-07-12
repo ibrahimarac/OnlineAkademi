@@ -34,6 +34,6 @@ namespace OnlineAkademi.Core.Domain.Entities
 
         public bool? IsActive { get; set; }
 
-        public ICollection<TrainerInCourse> TrainerInCourses { get; set; }
+        public ICollection<Course> Courses { get; set; }
     }
 }

@@ -53,6 +53,11 @@ namespace OnlineAkademi.Data.Sql.DbMappings
                 .WithOne(m => m.Course)
                 .HasForeignKey("CourseId");
 
+            //Course and Trainer relationship
+            builder.HasOne(co => co.Trainer)
+                .WithMany(t => t.Courses)
+                .HasForeignKey(t => t.TrainerId);
+
             builder.ToTable("Courses");
         }
     }

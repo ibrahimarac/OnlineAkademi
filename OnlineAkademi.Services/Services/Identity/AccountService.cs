@@ -33,6 +33,10 @@ namespace OnlineAkademi.Services.Services.Identity
 
         public async Task<bool> Login(LoginDto login)
         {
+            var user = await _userManager.FindByNameAsync(login.UserName);
+            if (user == null)
+                return false;
+
             var result = await _signInManager.PasswordSignInAsync(login.UserName, login.Password, login.RememberMe, false);
             return result.Succeeded;
         }

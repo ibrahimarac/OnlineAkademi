@@ -20,7 +20,12 @@ namespace OnlineAkademi.Core.Services
 
         void DeleteTrainer(string trainerId);
 
-        Task<IEnumerable<CourseDto>> GetCoursesByTrainer(string trainerId);
-        
+        Task<IEnumerable<CourseDto>> GetCoursesNoTrainer(string trainerId);
+
+        bool AddTrainerToCourse(string trainerId, int courseId);
+
+        bool RemoveTrainerFromCourse(string trainerId, int courseId);
+
+
     }
 }

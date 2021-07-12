@@ -13,8 +13,7 @@
     "title": "Kategori Ýþlemleri",
     "controller": "Category",
     "roles": [
-      "admin",
-      "guest"
+      "admin"
     ],
     "submenu": [
       {
@@ -31,8 +30,7 @@
     "title": "Kurs Ýþlemleri",
     "controller": "Course",
     "roles": [
-      "admin",
-      "guest"
+      "admin"
     ],
     "submenu": [
       {
@@ -49,8 +47,7 @@
     "title": "Eðitmen Ýþlemleri",
     "controller": "Trainer",
     "roles": [
-      "admin",
-      "guest"
+      "admin"
     ],
     "submenu": [
       {
@@ -60,10 +57,23 @@
       {
         "title": "Eðitmen Güncelle",
         "action": "List"
+      }
+    ]
+  },
+  {
+    "title": "Kurs Ýþlemleri",
+    "controller": "Material",
+    "roles": [
+      "trainer"
+    ],
+    "submenu": [
+      {
+        "title": "Yeni Materyal Ekle",
+        "action": "Create"
       },
       {
-        "title": "Eðitmen-Kurs Tanýmlarý",
-        "action": "TrainerCourseList"
+        "title": "Meteryal Düzenle",
+        "action": "List"
       }
     ]
   },
@@ -80,7 +90,7 @@
     "controller": "Account",
     "action": "Logout",
     "roles": [
-      "admin,user"
+      "admin,trainer,student"
     ]
   }
 ]

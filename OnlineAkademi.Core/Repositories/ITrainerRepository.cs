@@ -9,6 +9,10 @@ namespace OnlineAkademi.Core.Repositories
 {
     public interface ITrainerRepository:IRepository<Trainer>
     {
-        Task<IEnumerable<Course>> GetCoursesByTrainer(string id);
+        Task<IEnumerable<Course>> GetCoursesNoTrainer(string id);
+
+        bool AddTrainerToCourse(string trainerId, int courseId);
+
+        bool RemoveTrainerFromCourse(string trainerId, int courseId);
     }
 }

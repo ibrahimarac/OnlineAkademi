@@ -58,6 +58,10 @@ namespace OnlineAkademi.Data.Sql
         
         void HandleCrudOperationsLog()
         {
+            var settings = new Newtonsoft.Json.JsonSerializerSettings();
+            // This tells your serializer that multiple references are okay.
+            settings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+
             var entries=Context.ChangeTracker.Entries();
             var logs = new List<LogDto>();
             foreach (var entry in entries)
@@ -67,12 +71,12 @@ namespace OnlineAkademi.Data.Sql
                 if(entry.State==EntityState.Added||entry.State==EntityState.Modified)
                 {
                     //Yapılan değişiklikte Log entity'nin sadece New property'si doludur
-                    log.New = JsonConvert.SerializeObject(GetCurrentValues(entry));
+                    log.New = JsonConvert.SerializeObject(GetCurrentValues(entry),settings);
                 }
                 if (entry.State == EntityState.Deleted || entry.State == EntityState.Modified)
                 {
                     //Yapılan değişiklikte Log entity'nin New ve Old property'si doludur
-                    log.Old = JsonConvert.SerializeObject(GetOldValues(entry));
+                    log.Old = JsonConvert.SerializeObject(GetOldValues(entry),settings);
                 }
                 log.EntityName = entry.Entity.GetType().Name;
                 log.LogDate = DateTime.Now;

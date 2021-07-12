@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using OnlineAkademi.Core.Domain.Dto.Identity;
+using Microsoft.AspNetCore.Http;
 
 namespace OnlineAkademi.Web.Controllers
 {
@@ -161,9 +162,39 @@ namespace OnlineAkademi.Web.Controllers
         {
             if (id == null)
                 return RedirectToAction("List").ShowMessage(JConfirmMessageType.Error, "Uyarı", "Eğitmen kmlik no gönderilmedi.");
-            var courseDtos= await Trainers.GetCoursesByTrainer(id);
-            var coursesVM = Mapper.Map<IEnumerable<CourseDto>, IEnumerable<CourseVM>>(courseDtos);
+
+            //Şu an üzerinde kurs işlemleri yapılan kullanıcıyı Session'da saklayalım.
+            HttpContext.Session.SetString("trainer", id);
+
+            var courseDtos= await Trainers.GetCoursesNoTrainer(id);
+            var coursesVM = Mapper.Map<IEnumerable<CourseDto>, IEnumerable<CourseTrainerVM>>(courseDtos);
             return View(coursesVM);
+        }
+
+        [HttpGet]
+        [Route("Trainer/AddCourse/{id}")]
+        public IActionResult AddCourse(string id)
+        {
+            if (id == null)
+                return RedirectToAction("List").ShowMessage(JConfirmMessageType.Error, "Uyarı", "Eklenecek kurs numarası bulunamadı.");
+            //Kursu eğitmene bağlayalım.
+            var trainerId = HttpContext.Session.GetString("trainer");
+            Trainers.AddTrainerToCourse(trainerId,int.Parse(id));
+
+            return RedirectToAction("TrainerCourseList", "Trainer",new { id=trainerId});
+        }
+
+        [HttpGet]
+        [Route("Trainer/RemoveCourse/{id}")]
+        public IActionResult RemoveCourse(string id)
+        {
+            if (id == null)
+                return RedirectToAction("List").ShowMessage(JConfirmMessageType.Error, "Uyarı", "Kaldırılacak kurs numarası bulunamadı.");
+            //Kursu eğitmenden koparalım.
+            var trainerId = HttpContext.Session.GetString("trainer");
+            Trainers.RemoveTrainerFromCourse(trainerId, int.Parse(id));
+
+            return RedirectToAction("TrainerCourseList", "Trainer", new { id = trainerId });
         }
 
     }

@@ -9,6 +9,7 @@ namespace OnlineAkademi.Core.Services
     public interface IAccountService
     {
         Task<bool> Register(RegisterDto register);
+
         Task<bool> Login(LoginDto login);
 
         Task<bool> UserExists(string userName);

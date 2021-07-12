@@ -11,6 +11,10 @@ namespace OnlineAkademi.Core.Domain.Entities
 
         public Category Category { get; set; }
 
+        public string TrainerId { get; set; }
+
+        public Trainer Trainer { get; set; }
+
         public string Name { get; set; }
 
         public double Price { get; set; }
@@ -28,8 +32,6 @@ namespace OnlineAkademi.Core.Domain.Entities
         public DateTime LastupDate { get; set; }
 
         public bool? IsActive { get; set; }
-
-        public ICollection<TrainerInCourse> TrainerInCourses { get; set; }
 
         public ICollection<StudentInCourse> CourseStudents { get; set; }
 

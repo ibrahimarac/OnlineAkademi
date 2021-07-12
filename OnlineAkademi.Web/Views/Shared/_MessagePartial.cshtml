@@ -10,11 +10,11 @@
         }
         else if (TempData[Constants.TempData.ErrorKey] != null)
         {
-            @:$.ShowError('@Html.Raw(Constants.TempData.TitleKey)', '@Html.Raw(TempData[Constants.TempData.ErrorKey])')
+            @:$.ShowError('@Html.Raw(TempData[Constants.TempData.TitleKey])', '@Html.Raw(TempData[Constants.TempData.ErrorKey])')
         }
          else if (TempData[Constants.TempData.WarningKey] != null)
         {
-            @:$.ShowWarning('@Html.Raw(Constants.TempData.TitleKey)','@Html.Raw(TempData[Constants.TempData.WarningKey])')
+            @:$.ShowWarning('@Html.Raw(TempData[Constants.TempData.TitleKey])','@Html.Raw(TempData[Constants.TempData.WarningKey])')
         }
     }
 

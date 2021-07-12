@@ -14,7 +14,6 @@ namespace OnlineAkademi.Web.MvcMiddlewares
             return
                 services.AddAutoMapper(
                     typeof(CategoryMapper),
-                    typeof(CourseMapper),
                     typeof(Startup)
                 );
         }

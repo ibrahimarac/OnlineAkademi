@@ -48,9 +48,9 @@ namespace OnlineAkademi.Services.Services
             return trainerDtos;
         }
 
-        public async Task<IEnumerable<CourseDto>> GetCoursesByTrainer(string trainerId)
+        public async Task<IEnumerable<CourseDto>> GetCoursesNoTrainer(string trainerId)
         {
-            var courses=await Database.TrainerRepo.GetCoursesByTrainer(trainerId);
+            var courses=await Database.TrainerRepo.GetCoursesNoTrainer(trainerId);
             var courseDtos = Mapper.Map<IEnumerable<Course>, IEnumerable<CourseDto>>(courses);
             return courseDtos;
         }
@@ -75,5 +75,18 @@ namespace OnlineAkademi.Services.Services
             Database.Commit();
         }
 
+        public bool RemoveTrainerFromCourse(string trainerId, int courseId)
+        {
+            Database.TrainerRepo.RemoveTrainerFromCourse(trainerId, courseId);
+            Database.Commit();
+            return true;
+        }
+
+        public bool AddTrainerToCourse(string trainerId, int courseId)
+        {
+            Database.TrainerRepo.AddTrainerToCourse(trainerId, courseId);
+            Database.Commit();
+            return true;
+        }
     }
 }
