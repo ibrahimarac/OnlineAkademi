@@ -56,7 +56,9 @@ namespace OnlineAkademi.Web
 
             ServiceActivator.Configure(app.ApplicationServices);
 
-            app.UseExceptionHandler("/Error/Http500"); //500 numaralý kod çalýþtýrma hatalarý için
+            //app.UseExceptionHandler("/Error/Http500"); //500 numaralý kod çalýþtýrma hatalarý için
+
+            app.UseDeveloperExceptionPage();
 
             app.UseHsts();
 

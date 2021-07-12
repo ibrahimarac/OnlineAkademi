@@ -15,6 +15,11 @@ namespace OnlineAkademi.Data.Sql.DbMappings
             builder.Property(t => t.UserName)
                 .HasColumnType("varchar(10)");
 
+            builder.Property(t => t.Email)
+                .HasColumnType("varchar(150)")
+                .IsRequired()
+                .HasColumnName("Email");
+
             builder.Property(t => t.FirstName)
                 .HasColumnType("varchar(30)")
                 .IsRequired()
@@ -28,6 +33,10 @@ namespace OnlineAkademi.Data.Sql.DbMappings
             builder.Property(t => t.Experience)
                 .IsRequired()
                 .HasColumnName("Experience");
+
+            builder.Property(t => t.Age)
+                .IsRequired()
+                .HasColumnName("Age");
 
             builder.Property(t => t.TrainerType)
                 .IsRequired()

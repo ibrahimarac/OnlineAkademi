@@ -58,8 +58,8 @@ namespace OnlineAkademi.Web.Controllers
         }
 
         [HttpGet]
-        [Route("Category/Edit/{id:int?}")]
-        public IActionResult Edit(int? id)
+        [Route("Category/Edit/{id}")]
+        public IActionResult Edit(string id)
         {
             var categoryDto = Categories.GetCategoryById(id);
             var categoryVM = Mapper.Map<CategoryDto, CategoryVM>(categoryDto);

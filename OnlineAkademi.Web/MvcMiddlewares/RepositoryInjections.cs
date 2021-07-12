@@ -16,6 +16,7 @@ namespace OnlineAkademi.Web.MvcMiddlewares
                 services
                     .AddScoped<ICategoryRepository, CategoryRepository>()
                     .AddScoped<ICourseRepository,CourseRepository>()
+                    .AddScoped<ITrainerRepository,TrainerRepository>()
                     .AddScoped<IErrorRepository, ErrorRepository>()
                     .AddScoped<ICrudLoggerRepository, CrudLoggerRepository>();
         }

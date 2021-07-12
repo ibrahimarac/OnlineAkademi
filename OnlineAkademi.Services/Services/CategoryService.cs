@@ -31,11 +31,11 @@ namespace OnlineAkademi.Services.Services
             Database.Commit();
         }
 
-        public void DeleteCategory(int? categoryId)
+        public void DeleteCategory(string categoryId)
         {
-            if (!categoryId.HasValue)
+            if (categoryId==null)
                 throw new ParameterException("Id", "Category", "Kategori numarası gönderilmedi.");
-            var category = Database.CategoryRepo.GetById(categoryId.Value);
+            var category = Database.CategoryRepo.GetById(int.Parse(categoryId));
             if (category == null)
                 throw new ParameterException("Id", "Category", "Gönderilen kategori numarası geçerli değil.");
 
@@ -50,11 +50,11 @@ namespace OnlineAkademi.Services.Services
             return categoryDtos;
         }
 
-        public CategoryDto GetCategoryById(int? categoryId,bool isTracking=true)
+        public CategoryDto GetCategoryById(string categoryId,bool isTracking=true)
         {
-            if (!categoryId.HasValue)
+            if (categoryId==null)
                 throw new ParameterException("Id", "Category", "Kategori numarası gönderilmedi.");
-            var category=Database.CategoryRepo.GetById(categoryId.Value,isTracking);
+            var category=Database.CategoryRepo.GetById(int.Parse(categoryId),isTracking);
             if(category==null)
                 throw new ParameterException("Id", "Category", "Gönderilen kategori numarası geçerli değil.");
             var categoryDto = Mapper.Map<Category, CategoryDto>(category);

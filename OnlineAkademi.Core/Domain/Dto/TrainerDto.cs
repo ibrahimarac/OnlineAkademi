@@ -9,6 +9,8 @@ namespace OnlineAkademi.Core.Domain.Dto
     {
         public string UserName { get; set; }
 
+        public string Email { get; set; }
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -16,6 +18,10 @@ namespace OnlineAkademi.Core.Domain.Dto
         public int Experience { get; set; }
 
         public TrainerType TrainerType { get; set; }
+
+        public Gender Gender { get; set; }
+
+        public int Age { get; set; }
 
         public string CreateUser { get; set; }
 

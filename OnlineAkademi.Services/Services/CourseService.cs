@@ -29,11 +29,11 @@ namespace OnlineAkademi.Services.Services
             Database.Commit();
         }
 
-        public void DeleteCourse(int? courseId)
+        public void DeleteCourse(string courseId)
         {
-            if (!courseId.HasValue)
+            if (courseId==null)
                 throw new ParameterException("Id", "Course", "Kurs numarası gönderilmedi.");
-            var course = Database.CourseRepo.GetById(courseId.Value);
+            var course = Database.CourseRepo.GetById(int.Parse(courseId));
             if (course == null)
                 throw new ParameterException("Id", "Course", "Gönderilen kurs numarası geçerli değil.");
 
@@ -48,11 +48,11 @@ namespace OnlineAkademi.Services.Services
             return courseDtos;
         }
 
-        public CourseDto GetCourseById(int? courseId, bool isTracking = true)
+        public CourseDto GetCourseById(string courseId, bool isTracking = true)
         {
-            if (!courseId.HasValue)
+            if (courseId==null)
                 throw new ParameterException("Id", "Course", "Kurs numarası gönderilmedi.");
-            var course = Database.CourseRepo.GetById(courseId.Value, isTracking);
+            var course = Database.CourseRepo.GetById(int.Parse(courseId), isTracking);
             if (course == null)
                 throw new ParameterException("Id", "Course", "Gönderilen kurs numarası geçerli değil.");
             var courseDto = Mapper.Map<Course, CourseDto>(course);

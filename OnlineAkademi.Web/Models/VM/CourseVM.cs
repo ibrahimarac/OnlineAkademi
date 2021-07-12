@@ -9,7 +9,7 @@ namespace OnlineAkademi.Web.Models.VM
     public class CourseVM
     {
         [ScaffoldColumn(false)]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [Display(Name="Kategorisi")]
         public int? CategoryId { get; set; }

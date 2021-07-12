@@ -79,8 +79,8 @@ namespace OnlineAkademi.Web.Controllers
 
 
         [HttpGet]
-        [Route("Course/Edit/{id:int?}")]
-        public async Task<IActionResult> Edit(int? id)
+        [Route("Course/Edit/{id}")]
+        public async Task<IActionResult> Edit(string id)
         {
             await PopulateCategories();
             var courseDto = Courses.GetCourseById(id);

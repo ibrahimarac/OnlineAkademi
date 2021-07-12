@@ -12,10 +12,10 @@ namespace OnlineAkademi.Core.Services
 
         void AddCategory(CategoryDto categoryDto);
 
-        CategoryDto GetCategoryById(int? categoryId,bool isTracking=true);
+        CategoryDto GetCategoryById(string categoryId,bool isTracking=true);
 
         void UpdateCategory(CategoryDto categoryDto);
 
-        void DeleteCategory(int? categoryId);
+        void DeleteCategory(string categoryId);
     }
 }

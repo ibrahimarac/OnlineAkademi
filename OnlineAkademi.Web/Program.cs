@@ -42,11 +42,11 @@ namespace OnlineAkademi.Web
                         Exception = ex.Message,
                         IsAjaxRequest = false,
                         QueryString = "",
-                        RequestType=RequestType.GET,
-                        StatusCode=500,
-                        Url="Program.cs Main method",
-                        Username=""
-                    }) ;
+                        RequestType = RequestType.GET,
+                        StatusCode = 500,
+                        Url = "Program.cs Main method",
+                        Username = ""
+                    });
                 }
             }
 

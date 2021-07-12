@@ -46,6 +46,28 @@
     ]
   },
   {
+    "title": "Eðitmen Ýþlemleri",
+    "controller": "Trainer",
+    "roles": [
+      "admin",
+      "guest"
+    ],
+    "submenu": [
+      {
+        "title": "Yeni Eðitmen",
+        "action": "Create"
+      },
+      {
+        "title": "Eðitmen Güncelle",
+        "action": "List"
+      },
+      {
+        "title": "Eðitmen-Kurs Tanýmlarý",
+        "action": "TrainerCourseList"
+      }
+    ]
+  },
+  {
     "title": "Oturum Aç",
     "controller": "Account",
     "action": "Login",

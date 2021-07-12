@@ -10,5 +10,11 @@ namespace OnlineAkademi.Core.Services
     {
         Task<bool> Register(RegisterDto register);
         Task<bool> Login(LoginDto login);
+
+        Task<bool> UserExists(string userName);
+
+        Task<bool> DeleteUser(string userName);
+
+        Task<bool> UpdateUser(RegisterDto register);
     }
 }

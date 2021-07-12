@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace OnlineAkademi.Core.Domain.Common
@@ -28,8 +29,10 @@ namespace OnlineAkademi.Core.Domain.Common
 
     public enum Gender
     {
-        Male,
-        Female
+        [Display(Name = "Erkek")]
+        Male =1,
+        [Display(Name = "Kadın")]
+        Female =2
     }
 
     public enum MaterialType
@@ -41,7 +44,9 @@ namespace OnlineAkademi.Core.Domain.Common
 
     public enum TrainerType
     {
-        Inside,
-        Outside
+        [Display(Name = "Kurum İçi")]
+        Inside =1,
+        [Display(Name = "Kurum Dışı")]
+        Outside =2
     }
 }

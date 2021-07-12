@@ -15,9 +15,10 @@ namespace OnlineAkademi.Web.MvcMiddlewares
         {
             return
                 services
+                    .AddScoped<IAccountService, AccountService>()
                     .AddScoped<ICategoryService, CategoryService>()
-                    .AddScoped<ICourseService,CourseService>()
-                    .AddScoped<IAccountService,AccountService>()
+                    .AddScoped<ICourseService, CourseService>()
+                    .AddScoped<ITrainerService, TrainerService>()
                     .AddScoped<IErrorService, ErrorService>()
                     .AddScoped<ILogCrudService, LogCrudService>();
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlineAkademi.Core.Domain.Common;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -16,6 +17,8 @@ namespace OnlineAkademi.Core.Domain.Dto.Identity
 
         public string Password { get; set; }
 
-        public string PasswordConfirm { get; set; }
+        public int Age { get; set; }
+
+        public Gender Gender { get; set; }
     }
 }

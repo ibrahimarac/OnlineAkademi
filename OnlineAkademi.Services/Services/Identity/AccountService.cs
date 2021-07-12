@@ -21,6 +21,16 @@ namespace OnlineAkademi.Services.Services.Identity
             _signInManager = signInManager;
         }
 
+        public async Task<bool> DeleteUser(string userName)
+        {
+            var user=await _userManager.FindByNameAsync(userName);
+            if (user == null)
+                return false;
+
+            var result = await _userManager.DeleteAsync(user);
+            return result.Succeeded;
+        }
+
         public async Task<bool> Login(LoginDto login)
         {
             var result = await _signInManager.PasswordSignInAsync(login.UserName, login.Password, login.RememberMe, false);
@@ -31,15 +41,38 @@ namespace OnlineAkademi.Services.Services.Identity
         {
             AppUser user = new AppUser
             {
-                Email=register.Email,
-                UserName=register.UserName,
-                FirstName=register.Firstname,
-                LastName=register.Lastname
+                Email = register.Email,
+                UserName = register.UserName,
+                FirstName = register.Firstname,
+                LastName = register.Lastname,
+                Age = register.Age,
+                Gender = register.Gender
             };
 
             var result = await _userManager.CreateAsync(user, register.Password);
 
             return result.Succeeded;
+        }
+
+        public async Task<bool> UpdateUser(RegisterDto register)
+        {
+            AppUser user = await _userManager.FindByNameAsync(register.UserName);
+            if (user != null)
+            {
+                user.Email = register.Email;
+                user.FirstName = register.Firstname;
+                user.LastName = register.Lastname;
+                user.Age = register.Age;
+                user.Gender = register.Gender;
+            }
+            var result = await _userManager.UpdateAsync(user);
+            return result.Succeeded;
+        }
+
+        public async Task<bool> UserExists(string userName)
+        {
+            var user=await _userManager.FindByNameAsync(userName);
+            return user != null;
         }
     }
 }

@@ -12,12 +12,12 @@ namespace OnlineAkademi.Core.Services
 
         Task<IEnumerable<CourseDto>> GetCourseWithCourseName();
 
-        CourseDto GetCourseById(int? courseId, bool isTracking = true);
+        CourseDto GetCourseById(string courseId, bool isTracking = true);
 
         void AddCourse(CourseDto courseDto);
 
         void UpdateCourse(CourseDto categoryDto);
 
-        void DeleteCourse(int? courseId);
+        void DeleteCourse(string courseId);
     }
 }
