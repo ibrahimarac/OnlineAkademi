@@ -53,6 +53,9 @@ namespace OnlineAkademi.Web.Controllers
         [Route("CourseMaterial/ListMaterials/{id:int?}")]
         public IActionResult ListMaterials(int? id)
         {
+            if (!id.HasValue)
+                return RedirectToAction("ListCourses").ShowMessage(JConfirmMessageType.Warning,"Dikkat","Kurs listesinden herhangi bir kurs seçmeden devam edemezsiniz.");
+
             //Şu an üzerinde çalışılan kursun id değerini Session içerisinde saklayalım.
             //Bu bilgi ilerde matryal eklerken gerekli olacak.
             HttpContext.Session.SetInt32("CourseId", id.Value);
@@ -65,22 +68,22 @@ namespace OnlineAkademi.Web.Controllers
 
         [HttpPost]
         [Route("CourseMaterial/RemoveMaterial")]
-        public IActionResult RemoveMaterial([FromBody] JQueryDeleteObject material)
+        public IActionResult RemoveMaterial([Bind("Id")] JQueryDeleteObject model)
         {
             //Fiziksel dosyanın yolu
-            var fileUrl = Materials.GetFileUrl(material.Id);
+            var fileName = Materials.GetFileUrl(model.Id);
+            var fileUrl = Path.Combine(_environment.WebRootPath, "materials", fileName);
 
             //Veritabanından sil
-            Materials.DeleteMaterial(material.Id);
+            Materials.DeleteMaterial(model.Id);
 
             //Fiziksel dosya varsa kaldır
             if (string.IsNullOrEmpty(fileUrl))
             {
-                var filePath = Path.Combine(_environment.WebRootPath, "materials", fileUrl);
-                if (System.IO.File.Exists(filePath))
-                    System.IO.File.Delete(filePath);
+                if (System.IO.File.Exists(fileUrl))
+                    System.IO.File.Delete(fileUrl);
             }
-           
+
             return Json(new JsonResponse
             {
                 Status = JsonResponseStatus.Ok,
@@ -104,22 +107,25 @@ namespace OnlineAkademi.Web.Controllers
             //materyal eklenecek kurs numarası
             var courseId = HttpContext.Session.GetInt32("CourseId");
 
-            //Dosyayı yükleyelim
-            var fileName = $"{Guid.NewGuid()}{Path.GetExtension(material.UploadedFile.FileName)}";
-            var filePath = Path.Combine(_environment.WebRootPath, "materials", fileName);
-            if(material.UploadedFile!=null)
+            //Dosya Seçilmişse dosyayı yükleyelim
+            if (material.UploadedFile != null)
             {
-                material.UploadedFile.CopyTo(new FileStream(filePath, FileMode.Create));
+                var fileName = $"{Guid.NewGuid()}{Path.GetExtension(material.UploadedFile.FileName)}";
+                var filePath = Path.Combine(_environment.WebRootPath, "materials", fileName);
+                if (material.UploadedFile != null)
+                {
+                    material.UploadedFile.CopyTo(new FileStream(filePath, FileMode.Create));
+                }
+                material.Url = fileName;
             }
             material.CourseId = courseId.Value;
-            material.Url = fileName;
-
+            
             var materialDto = Mapper.Map<MaterialVM, MaterialDto>(material);
 
             Materials.AddMaterial(materialDto);
 
             return RedirectToAction("ListMaterials", new { id = courseId })
-                .ShowMessage(JConfirmMessageType.Success,"Uyarı","Materyal başarıyla silindi.");
+                .ShowMessage(JConfirmMessageType.Success, "Uyarı", "Materyal başarıyla kaydedildi.");
         }
 
     }

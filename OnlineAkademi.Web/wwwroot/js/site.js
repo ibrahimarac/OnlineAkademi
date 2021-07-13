@@ -57,7 +57,6 @@ $.ShowWarning = function (title, content) {
 }
 
 $.AjaxDelete = function (trigger, url) {
-
     var reqData = {
         id: $(trigger).data('id')
     }
@@ -65,9 +64,9 @@ $.AjaxDelete = function (trigger, url) {
     $.ajax({
         type: 'POST',
         url: url,
-        data: JSON.stringify(reqData),
-        contentType: 'application/json;charset=utf-8',
-        dataType: 'json',
+        data: reqData,
+        //contentType: 'application/json',
+        //dataType: 'json',
         success: function (result) {
             if (result.status == Status.Ok) {
                 $(trigger).parent().parent().hide(300, function () {
@@ -79,7 +78,7 @@ $.AjaxDelete = function (trigger, url) {
                 $.ShowError('Hata oluştu',result.message)
         },
         error: function (xhr, status, error) {
-            $.ShowError('Hata oluştu',error)
+            $.ShowError('Hata oluştu', error.error)
         }
     })
 }

@@ -72,23 +72,5 @@
         "action": "ListCourses"
       }
     ]
-  },
-  {
-    "title": "Oturum Aç",
-    "controller": "Account",
-    "action": "Login",
-    "roles": [
-      "guest"
-    ]
-  },
-  {
-    "title": "Güvenli Çýkýþ",
-    "controller": "Account",
-    "action": "Logout",
-    "roles": [
-      "admin",
-      "trainer",
-      "student"
-    ]
   }
 ]

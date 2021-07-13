@@ -143,10 +143,10 @@ namespace OnlineAkademi.Web.Controllers
 
         [HttpPost]
         [Route("Trainer/Delete")]
-        public async Task<IActionResult> Delete([FromBody] JQueryDeleteObject trainer)
+        public async Task<IActionResult> Delete([Bind("Id")] JQueryDeleteObject model)
         {
             //Önce Identity'den kullanıcıyı kaldıralım
-            var result = await Accounts.DeleteUser(trainer.Id);
+            var result = await Accounts.DeleteUser(model.Id);
             if (!result)
                 return Json(new JsonResponse
                 {
@@ -154,7 +154,7 @@ namespace OnlineAkademi.Web.Controllers
                     Message = "Silinecek eğitmene ait kimlik bilgisi geçerli değil."
                 });
 
-            Trainers.DeleteTrainer(trainer.Id);
+            Trainers.DeleteTrainer(model.Id);
 
             return Json(new JsonResponse
             {

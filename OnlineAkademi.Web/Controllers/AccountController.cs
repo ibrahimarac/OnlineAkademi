@@ -83,5 +83,38 @@ namespace OnlineAkademi.Web.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [HttpGet]
+        [Route("Account/Register")]
+        public IActionResult Register()
+        {            
+            return View();
+        }
+
+        [HttpPost]
+        [Route("Account/Register")]
+        public async Task<IActionResult> Register(LoginVM login)
+        {
+            if (!ModelState.IsValid)
+                return View(login).ShowMessage(JConfirmMessageType.Warning, "Uyarı", "Kullanıcı adı veya parolada hatalar var.");
+
+            var loginDto = Mapper.Map<LoginVM, LoginDto>(login);
+            var result = await _accountService.Login(loginDto);
+
+            //Beni Hatırla işaretli mi
+            if (login.RememberMe)
+            {
+                HttpContext.SetCookie("username", login.UserName, TimeSpan.FromDays(1));
+            }
+            else
+            {
+                HttpContext.DeleteCookie("username");
+            }
+
+            if (!result)
+                return View(login).ShowMessage(JConfirmMessageType.Error, "Uyarı", "Kullanıcı adı veya parola hatalı.");
+
+            return RedirectToAction("Index", "Home");
+        }
+
     }
 }

@@ -91,9 +91,9 @@ namespace OnlineAkademi.Web.Controllers
 
         [HttpPost]
         [Route("Category/Delete")]
-        public IActionResult Delete([FromBody]JQueryDeleteObject category)
+        public IActionResult Delete([Bind("Id")] JQueryDeleteObject model)
         {
-            Categories.DeleteCategory(category.Id);
+            Categories.DeleteCategory(model.Id);
 
             return Json(new JsonResponse { 
                 Status=JsonResponseStatus.Ok,
