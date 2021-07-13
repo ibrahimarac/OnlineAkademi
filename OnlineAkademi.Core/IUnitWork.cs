@@ -17,6 +17,8 @@ namespace OnlineAkademi.Core
 
         IMaterialRepository MaterialRepo { get; }
 
+        IStudentRepository StudentRepo { get; }
+
         IErrorRepository ErrorRepo { get; }
 
         ICrudLoggerRepository CrudLoggerRepo { get; set; }

@@ -25,15 +25,18 @@ namespace OnlineAkademi.Data.Sql.DbMappings
                 .IsRequired()
                 .HasColumnName("LastName");
 
-            builder.Property(s => s.FirstName)
+            builder.Property(s => s.Email)
+                .HasColumnType("varchar(150)")
                 .IsRequired()
-                .HasColumnType("varchar(30)")
-                .HasColumnName("Experience");
+                .HasColumnName("Email");
 
-            builder.Property(t => t.LastName)
+            builder.Property(s => s.Gender)
                 .IsRequired()
-                .HasColumnType("varchar(30)")
-                .HasColumnName("TrainerType");
+                .HasColumnName("Gender");
+
+            builder.Property(t => t.Age)
+                .IsRequired()
+                .HasColumnName("Age");
 
             builder.Property(s => s.LastupUser)
                 .HasColumnType("varchar(10)")
@@ -48,9 +51,6 @@ namespace OnlineAkademi.Data.Sql.DbMappings
 
             builder.Property(s => s.LastupDate)
                 .HasDefaultValueSql("getdate()");
-
-            builder.Property(s => s.IsActive)
-                .HasDefaultValueSql("1");
 
             builder.ToTable("Students");
         }

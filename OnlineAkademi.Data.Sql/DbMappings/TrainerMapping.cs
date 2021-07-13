@@ -34,6 +34,10 @@ namespace OnlineAkademi.Data.Sql.DbMappings
                 .IsRequired()
                 .HasColumnName("Experience");
 
+            builder.Property(t => t.Gender)
+                .IsRequired()
+                .HasColumnName("Gender");
+
             builder.Property(t => t.Age)
                 .IsRequired()
                 .HasColumnName("Age");

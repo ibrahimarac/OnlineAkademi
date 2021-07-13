@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace OnlineAkademi.Data.Sql.Repositories
 {
-    public class CategoryRepository : Repository<Category>,ICategoryRepository
+    public class CategoryRepository : Repository<Category>, ICategoryRepository
     {
         public CategoryRepository(AkademiContext context):base(context)
         {

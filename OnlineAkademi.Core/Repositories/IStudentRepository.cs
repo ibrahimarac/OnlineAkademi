@@ -6,7 +6,7 @@ using System.Text;
 
 namespace OnlineAkademi.Core.Repositories
 {
-    public interface ICategoryRepository:IRepository<Category>
+    public interface IStudentRepository:IRepository<Student>
     {
         
     }

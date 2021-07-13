@@ -26,5 +26,7 @@ namespace OnlineAkademi.Core.Services
         Task<bool> AddUserToRole(string userName,string roleName);
 
         Task Logout();
+
+        Task<bool> SignInAsync(string userName, string password,bool persist=false);
     }
 }

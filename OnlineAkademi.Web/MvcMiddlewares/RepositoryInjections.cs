@@ -18,6 +18,7 @@ namespace OnlineAkademi.Web.MvcMiddlewares
                     .AddScoped<ICourseRepository,CourseRepository>()
                     .AddScoped<ITrainerRepository,TrainerRepository>()
                     .AddScoped<IMaterialRepository, MaterialRepository>()
+                    .AddScoped<IStudentRepository, StudentRepository>()
                     .AddScoped<IErrorRepository, ErrorRepository>()
                     .AddScoped<ICrudLoggerRepository, CrudLoggerRepository>();
         }

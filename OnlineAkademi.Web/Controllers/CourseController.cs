@@ -32,6 +32,7 @@ namespace OnlineAkademi.Web.Controllers
 
         [HttpGet]
         [Route("Course/List")]
+        [Authorize("student")]
         public async Task<IActionResult> List()
         {
             //Dto to VM

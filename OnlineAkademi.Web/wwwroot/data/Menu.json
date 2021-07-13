@@ -10,6 +10,20 @@
     ]
   },
   {
+    "title": "Kurslarýmýz",
+    "controller": "Course",
+    "roles": [
+      "guest",
+      "user"
+    ],
+    "submenu": [
+      {
+        "title": "Kayýtlý Kurslar",
+        "action": "ListCourseDetail"
+      }
+    ]
+  },
+  {
     "title": "Kategori Ýþlemleri",
     "controller": "Category",
     "roles": [
@@ -69,6 +83,19 @@
     "submenu": [
       {
         "title": "Meteryal Ýþlemleri",
+        "action": "ListCourses"
+      }
+    ]
+  },
+  {
+    "title": "Kurs Ýþlemleri",
+    "controller": "Student",
+    "roles": [
+      "trainer"
+    ],
+    "submenu": [
+      {
+        "title": "Kayýtlý Kurslarým",
         "action": "ListCourses"
       }
     ]

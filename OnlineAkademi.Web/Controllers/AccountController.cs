@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using OnlineAkademi.Core.Domain.Common;
+using OnlineAkademi.Core.Domain.Dto;
 using OnlineAkademi.Core.Domain.Dto.Identity;
 using OnlineAkademi.Core.Domain.Entities.Identity;
 using OnlineAkademi.Core.Services;
@@ -19,13 +20,15 @@ namespace OnlineAkademi.Web.Controllers
     [AllowAnonymous]
     public class AccountController : Controller
     {
-        private readonly IAccountService _accountService;
+        private readonly IAccountService Accounts;
+        private readonly IStudentService Students;
         private readonly SignInManager<AppUser> _signinService;
         private readonly IMapper Mapper;
 
-        public AccountController(IAccountService accountService,IMapper mapper, SignInManager<AppUser> signinService)
+        public AccountController(IAccountService accountService,IStudentService studentService,IMapper mapper, SignInManager<AppUser> signinService)
         {
-            _accountService = accountService;
+            Accounts = accountService;
+            Students = studentService;
             Mapper = mapper;
             _signinService = signinService;
         }
@@ -56,7 +59,7 @@ namespace OnlineAkademi.Web.Controllers
                 return View(login).ShowMessage(JConfirmMessageType.Warning, "Uyarı", "Kullanıcı adı veya parolada hatalar var.");
 
             var loginDto = Mapper.Map<LoginVM, LoginDto>(login);
-            var result=await _accountService.Login(loginDto);
+            var result=await Accounts.Login(loginDto);
 
             //Beni Hatırla işaretli mi
             if (login.RememberMe)
@@ -79,7 +82,7 @@ namespace OnlineAkademi.Web.Controllers
         [Authorize]
         public async Task<IActionResult> Logout()
         {
-            await _accountService.Logout();
+            await Accounts.Logout();
             return RedirectToAction("Index", "Home");
         }
 
@@ -92,28 +95,51 @@ namespace OnlineAkademi.Web.Controllers
 
         [HttpPost]
         [Route("Account/Register")]
-        public async Task<IActionResult> Register(LoginVM login)
+        public async Task<IActionResult> Register(StudentVM studentVM,string ReturnUrl)
         {
             if (!ModelState.IsValid)
-                return View(login).ShowMessage(JConfirmMessageType.Warning, "Uyarı", "Kullanıcı adı veya parolada hatalar var.");
+                return View(studentVM).ShowMessage(JConfirmMessageType.Warning, "Uyarı","Girilen bilgilerde bazı hatalar tespit edildi.");
 
-            var loginDto = Mapper.Map<LoginVM, LoginDto>(login);
-            var result = await _accountService.Login(loginDto);
+            //Önce eğitmeni Identity tablolarına eklemeye çalışalım
+            var userExists = await Accounts.UserExists(studentVM.UserName);
+            if (userExists)
+                return View(studentVM).ShowMessage(JConfirmMessageType.Error, "Hata", "Bu kullanıcı adına sahip bir öğrenci zaten tanımlı.");
 
-            //Beni Hatırla işaretli mi
-            if (login.RememberMe)
+            var createStudentResult = await Accounts.Register(new RegisterDto
             {
-                HttpContext.SetCookie("username", login.UserName, TimeSpan.FromDays(1));
-            }
-            else
+                Email = studentVM.Email,
+                Firstname = studentVM.FirstName,
+                Lastname = studentVM.LastName,
+                Password = studentVM.Password,
+                UserName = studentVM.UserName,
+                Gender = studentVM.Gender
+            });
+            //Öğrenciyi trainer rolüne ekliyorum.
+            var addRoleResult = await Accounts.AddUserToRole(studentVM.UserName, "student");
+            if (!addRoleResult)
+                return View(studentVM).ShowMessage(JConfirmMessageType.Error, "Hata", "Öğrenci role atanırken bir hata oluştu.");
+
+
+            //IDentity tablosuna ekleme başarılı ise
+            //kendi tabloma kullanıcıyı ekliyorum.
+            if (createStudentResult)
             {
-                HttpContext.DeleteCookie("username");
+                //VM to Dto
+                var trainerDto = Mapper.Map<StudentVM, StudentDto>(studentVM);
+
+                Students.AddStudent(trainerDto);
+
+                //Öğrenciyi login yapalım
+                var result=await Accounts.SignInAsync(studentVM.UserName, studentVM.Password, true);
+                //Öğrencinin oturumu başarıyla açıldıysa talep ettiği sayfaya gönder
+                if (result)
+                {
+                    return Redirect(ReturnUrl);
+                }
             }
+            
+            return View(studentVM).ShowMessage(JConfirmMessageType.Error, "Hata", "Kullanıcı oluşturma işleminde hata(lar) var");
 
-            if (!result)
-                return View(login).ShowMessage(JConfirmMessageType.Error, "Uyarı", "Kullanıcı adı veya parola hatalı.");
-
-            return RedirectToAction("Index", "Home");
         }
 
     }

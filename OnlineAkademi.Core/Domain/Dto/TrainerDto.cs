@@ -5,7 +5,7 @@ using System.Text;
 
 namespace OnlineAkademi.Core.Domain.Dto
 {
-    public class TrainerDto
+    public class TrainerDto:TrackableDto
     {
         public string UserName { get; set; }
 
@@ -22,15 +22,5 @@ namespace OnlineAkademi.Core.Domain.Dto
         public Gender Gender { get; set; }
 
         public int Age { get; set; }
-
-        public string CreateUser { get; set; }
-
-        public string LastupUser { get; set; }
-
-        public DateTime CreateDate { get; set; }
-
-        public DateTime LastupDate { get; set; }
-
-        public bool? IsActive { get; set; }
     }
 }

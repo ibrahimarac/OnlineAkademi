@@ -1,10 +1,11 @@
-﻿using System;
+﻿using OnlineAkademi.Core.Domain.Common;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace OnlineAkademi.Core.Domain.Dto
 {
-    public class StudentDto
+    public class StudentDto:TrackableDto
     {
         public string UserName { get; set; }
 
@@ -12,14 +13,11 @@ namespace OnlineAkademi.Core.Domain.Dto
 
         public string LastName { get; set; }
 
-        public string CreateUser { get; set; }
+        public string Email { get; set; }
 
-        public string LastupUser { get; set; }
+        public Gender Gender { get; set; }
 
-        public DateTime CreateDate { get; set; }
+        public int Age { get; set; }
 
-        public DateTime LastupDate { get; set; }
-
-        public bool? IsActive { get; set; }
     }
 }

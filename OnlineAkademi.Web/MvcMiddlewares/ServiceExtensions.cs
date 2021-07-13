@@ -20,6 +20,7 @@ namespace OnlineAkademi.Web.MvcMiddlewares
                     .AddScoped<ICourseService, CourseService>()
                     .AddScoped<ITrainerService, TrainerService>()
                     .AddScoped<IMaterialService, MaterialService>()
+                    .AddScoped<IStudentService, StudentsService>()
                     .AddScoped<IErrorService, ErrorService>()
                     .AddScoped<ILogCrudService, LogCrudService>();
         }

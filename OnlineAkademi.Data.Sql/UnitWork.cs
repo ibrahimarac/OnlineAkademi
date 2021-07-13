@@ -24,6 +24,7 @@ namespace OnlineAkademi.Data.Sql
                             ICourseRepository courseRepository,
                             ITrainerRepository trainerRepository,
                             IMaterialRepository materialRepository,
+                            IStudentRepository studentRepository,
                             IErrorRepository errorRepository,
                             ICrudLoggerRepository crudLoggerRepository,
                             ICrudOperationLogger crudLogger
@@ -33,6 +34,7 @@ namespace OnlineAkademi.Data.Sql
             CourseRepo = courseRepository ?? throw new ArgumentNullException(nameof(courseRepository));
             TrainerRepo = trainerRepository ?? throw new ArgumentNullException(nameof(trainerRepository));
             MaterialRepo=materialRepository?? throw new ArgumentNullException(nameof(materialRepository));
+            StudentRepo= studentRepository ?? throw new ArgumentNullException(nameof(studentRepository));
 
             ErrorRepo = errorRepository ?? throw new ArgumentNullException(nameof(errorRepository));
             CrudLoggerRepo= crudLoggerRepository ?? throw new ArgumentNullException(nameof(crudLoggerRepository));
@@ -49,6 +51,7 @@ namespace OnlineAkademi.Data.Sql
         public ICourseRepository CourseRepo { get; set; }
         public ITrainerRepository TrainerRepo { get; set; }
         public IMaterialRepository MaterialRepo { get; set; }
+        public IStudentRepository StudentRepo { get; set; }
         public IErrorRepository ErrorRepo { get; }
         public ICrudLoggerRepository CrudLoggerRepo { get; set; }
 

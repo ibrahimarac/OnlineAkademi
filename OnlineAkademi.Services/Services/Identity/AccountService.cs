@@ -107,5 +107,17 @@ namespace OnlineAkademi.Services.Services.Identity
         {
             await _signInManager.SignOutAsync();
         }
+
+        public async Task<bool> SignInAsync(string userName, string password, bool persist = false)
+        {
+            var userExists = await UserExists(userName);
+            if (userExists)
+            {
+                var user = await _userManager.FindByNameAsync(userName);
+                var result=await _signInManager.PasswordSignInAsync(user, password, persist, false);
+                return result.Succeeded;
+            }
+            return false;
+        }
     }
 }
