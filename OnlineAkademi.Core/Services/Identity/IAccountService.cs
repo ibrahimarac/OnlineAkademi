@@ -1,4 +1,5 @@
 ﻿using OnlineAkademi.Core.Domain.Dto.Identity;
+using OnlineAkademi.Core.Domain.Entities.Identity;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,5 +18,13 @@ namespace OnlineAkademi.Core.Services
         Task<bool> DeleteUser(string userName);
 
         Task<bool> UpdateUser(RegisterDto register);
+
+        Task<AppUser> GetUserAsync(string userName);
+
+        Task<IList<string>> GetRolesForUser(AppUser user);
+
+        Task<bool> AddUserToRole(string userName,string roleName);
+
+        Task Logout();
     }
 }

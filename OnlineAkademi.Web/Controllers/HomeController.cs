@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -11,10 +12,11 @@ using System.Threading.Tasks;
 namespace OnlineAkademi.Web.Controllers
 {
     [Route("")]
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         [Route("")]
-        [Route("Home/Index")]
+        [Route("Home/Index")]        
         public IActionResult Index()
         {
             return View();

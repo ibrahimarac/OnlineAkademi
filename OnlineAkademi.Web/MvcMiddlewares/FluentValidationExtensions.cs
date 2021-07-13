@@ -21,6 +21,7 @@ namespace OnlineAkademi.Web.MvcMiddlewares
                     .AddTransient<IValidator<CourseVM>, CourseValidator>()
                     .AddTransient<IValidator<TrainerVM>, TrainerValidator>()
                     .AddTransient<IValidator<TrainerEditVM>, TrainerEditValidator>()
+                    .AddTransient<IValidator<MaterialVM>,MaterialValidator>()
                     .AddTransient<IValidator<LoginVM>, LoginValidator>();
         }
     }

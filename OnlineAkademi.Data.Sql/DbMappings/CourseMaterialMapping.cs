@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using OnlineAkademi.Core.Domain.Dto;
 
 namespace OnlineAkademi.Data.Sql.DbMappings
 {
@@ -42,8 +43,6 @@ namespace OnlineAkademi.Data.Sql.DbMappings
             builder.Property(m => m.LastupDate)
                 .HasDefaultValueSql("getdate()");
 
-            builder.Property(m => m.IsActive)
-                .HasDefaultValueSql("1");
 
         }
     }

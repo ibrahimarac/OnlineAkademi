@@ -14,6 +14,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace OnlineAkademi.Web
 {
@@ -29,12 +31,14 @@ namespace OnlineAkademi.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             services.AddLocalDbContext(Configuration);
 
             services.AddLocalIdentityContext(Configuration);
 
             services.AddControllersWithViews()
-                .AddRazorRuntimeCompilation();    
+                .AddRazorRuntimeCompilation();
 
             services.AddRepositories();
 
@@ -48,8 +52,19 @@ namespace OnlineAkademi.Web
 
             services.AddLoggers();
 
-            services.AddSession(options => {
+            services.AddSession(options =>
+            {
                 options.IdleTimeout = TimeSpan.FromMinutes(5);//You can set Time   
+            });
+
+            services.ConfigureApplicationCookie(opt =>
+            {
+                opt.Cookie.Name = "user";
+                opt.LoginPath = "/Account/Login";
+                // Cookie settings
+                opt.Cookie.HttpOnly = true;
+                opt.ExpireTimeSpan = TimeSpan.FromMinutes(10);
+                opt.SlidingExpiration = true;
             });
 
         }
@@ -57,8 +72,10 @@ namespace OnlineAkademi.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-
             ServiceActivator.Configure(app.ApplicationServices);
+
+            //Cookie middleware'i aktifleþtir.
+            app.UseCookiePolicy();
 
             //app.UseExceptionHandler("/Error/Http500"); //500 numaralý kod çalýþtýrma hatalarý için
 
@@ -73,6 +90,8 @@ namespace OnlineAkademi.Web
             app.UseSession();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

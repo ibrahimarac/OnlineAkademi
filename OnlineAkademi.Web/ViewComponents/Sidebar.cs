@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using OnlineAkademi.Core.Domain.Entities.Identity;
+using OnlineAkademi.Core.Services;
 using OnlineAkademi.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -16,12 +18,12 @@ namespace OnlineAkademi.Web.ViewComponents
 {
     public class Sidebar:ViewComponent
     {
-        private readonly UserManager<AppUser> _userManager;
+        private readonly IAccountService _accountService;
         private readonly IWebHostEnvironment _environment;
 
-        public Sidebar(UserManager<AppUser> userManager, IWebHostEnvironment environment)
+        public Sidebar(IAccountService accountService, IWebHostEnvironment environment)
         {
-            _userManager = userManager;
+            _accountService = accountService;
             _environment = environment;
         }
 
@@ -30,15 +32,23 @@ namespace OnlineAkademi.Web.ViewComponents
             //sol menülerin tutulduğu json dosyasının yolu
             var jsonPath = $"{_environment.WebRootPath}\\data\\Menu.json";
 
-            //login olan kullanıcının rolleri elde ediliyor
-            var loginUser = await _userManager.GetUserAsync(UserClaimsPrincipal);
-
             IList<string> userRoles = null;
 
-            if (loginUser != null)
-                userRoles = await _userManager.GetRolesAsync(loginUser);
-            else
+            var loggedInUser = User.Identity.Name;
+
+            //Eğer oturum açılmamışsa
+            if (loggedInUser==null)
+            {
                 userRoles = new List<string> { "guest" };
+            }
+            else
+            {
+                //login olan kullanıcının rolleri elde ediliyor
+                var loginUser = await _accountService.GetUserAsync(loggedInUser);
+
+                if (loginUser != null)
+                    userRoles = await _accountService.GetRolesForUser(loginUser);
+            }
 
             //Menüleri dosyadan çekelim ve deserialize işlemini gerçekleştirelim.
             var menus = JsonConvert.DeserializeObject<List<Menu>>(File.ReadAllText(jsonPath,Encoding.GetEncoding(1254)));

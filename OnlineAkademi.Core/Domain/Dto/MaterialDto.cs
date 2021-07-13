@@ -1,16 +1,15 @@
 ﻿using OnlineAkademi.Core.Domain.Abstractions;
 using OnlineAkademi.Core.Domain.Common;
+using OnlineAkademi.Core.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace OnlineAkademi.Core.Domain.Entities
+namespace OnlineAkademi.Core.Domain.Dto
 {
-    public class CourseMaterial : BaseEntity, ITrackable
+    public class MaterialDto : BaseEntity, ITrackable
     {
         public int CourseId { get; set; }
-
-        public Course Course { get; set; }
 
         public string Description { get; set; }
 

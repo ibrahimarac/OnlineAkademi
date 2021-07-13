@@ -37,8 +37,11 @@ namespace OnlineAkademi.Core.Domain.Common
 
     public enum MaterialType
     {
+        [Display(Name = "Pdf Dosyası")]
         Pdf,
+        [Display(Name = "Video Dosyası")]
         Video,
+        [Display(Name = "Bağlantı Adresi")]
         Link
     }
 

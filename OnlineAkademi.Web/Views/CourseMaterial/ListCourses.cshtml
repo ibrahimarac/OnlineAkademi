@@ -1,0 +1,57 @@
+﻿@model IEnumerable<OnlineAkademi.Web.Models.VM.CourseVM>
+
+@{
+    ViewData["Title"] = "Atanmış Olduğunuz Eğitimler";
+}
+
+
+<table class="table table-bordered table-hover table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Duration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quota)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quota)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @((item.IsActive)?"Aktif":"Pasif")
+            </td>
+            <td>
+                <a asp-action="ListMaterials" asp-controller="CourseMaterial" asp-route-id="@item.Id"
+                   class="btn btn-success">
+                    <i class="fa fa-list"></i>
+                </a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

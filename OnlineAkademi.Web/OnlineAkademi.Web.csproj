@@ -21,4 +21,8 @@
     <ProjectReference Include="..\OnlineAkademi.Utils\OnlineAkademi.Utils.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\materials\" />
+  </ItemGroup>
+
 </Project>

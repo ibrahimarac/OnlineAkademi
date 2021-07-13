@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using OnlineAkademi.Core.Domain.Dto.Identity;
 using OnlineAkademi.Core.Domain.Entities.Identity;
 using OnlineAkademi.Core.Services;
@@ -13,12 +14,15 @@ namespace OnlineAkademi.Services.Services.Identity
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly IHttpContextAccessor _contextAccessor;
 
         public AccountService(UserManager<AppUser> userManager,
-            SignInManager<AppUser> signInManager)
+            SignInManager<AppUser> signInManager,
+            IHttpContextAccessor contextAccessor)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _contextAccessor = contextAccessor;
         }
 
         public async Task<bool> DeleteUser(string userName)
@@ -38,6 +42,7 @@ namespace OnlineAkademi.Services.Services.Identity
                 return false;
 
             var result = await _signInManager.PasswordSignInAsync(login.UserName, login.Password, login.RememberMe, false);
+
             return result.Succeeded;
         }
 
@@ -77,6 +82,30 @@ namespace OnlineAkademi.Services.Services.Identity
         {
             var user=await _userManager.FindByNameAsync(userName);
             return user != null;
+        }
+
+        public async Task<AppUser> GetUserAsync(string userName)
+        {
+            var user = await _userManager.FindByNameAsync(userName);
+            return user;
+        }
+
+        public async Task<IList<string>> GetRolesForUser(AppUser user)
+        {
+            var roles=await _userManager.GetRolesAsync(user);
+            return roles;
+        }
+
+        public async Task<bool> AddUserToRole(string userName, string roleName)
+        {
+            var user = await _userManager.FindByNameAsync(userName);
+            var result =await _userManager.AddToRoleAsync(user, roleName);
+            return result.Succeeded;
+        }
+
+        public async Task Logout()
+        {
+            await _signInManager.SignOutAsync();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using OnlineAkademi.Core.Domain.Common;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace OnlineAkademi.Web.Controllers
 {
+    [Authorize(Roles ="admin")]
     public class CourseController : Controller
     {
         private readonly ICourseService Courses;

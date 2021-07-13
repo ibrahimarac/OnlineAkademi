@@ -11,9 +11,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using OnlineAkademi.Core.Domain.Dto.Identity;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace OnlineAkademi.Web.Controllers
 {
+    [Authorize(Roles ="admin")]
     public class TrainerController : Controller
     {
         private readonly ITrainerService Trainers;
@@ -68,6 +70,12 @@ namespace OnlineAkademi.Web.Controllers
                 UserName = trainerVM.UserName,
                 Gender = trainerVM.Gender
             });
+            //Kullanıcıya trainer rolüne ekliyorum.
+            var addRoleResult=await Accounts.AddUserToRole(trainerVM.UserName, "trainer");
+            if (!addRoleResult)
+                return View(trainerVM).ShowMessage(JConfirmMessageType.Error, "Hata", "Eğitmene eğitmenlik rolü verilirken bir hata oluştu.");
+
+
             //IDentity tablosuna ekleme başarılı ise
             //kendi tabloma kullanıcıyı ekliyorum.
             if (createTrainerResult)

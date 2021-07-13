@@ -62,18 +62,14 @@
   },
   {
     "title": "Kurs Ýþlemleri",
-    "controller": "Material",
+    "controller": "CourseMaterial",
     "roles": [
       "trainer"
     ],
     "submenu": [
       {
-        "title": "Yeni Materyal Ekle",
-        "action": "Create"
-      },
-      {
-        "title": "Meteryal Düzenle",
-        "action": "List"
+        "title": "Meteryal Ýþlemleri",
+        "action": "ListCourses"
       }
     ]
   },
@@ -90,7 +86,9 @@
     "controller": "Account",
     "action": "Logout",
     "roles": [
-      "admin,trainer,student"
+      "admin",
+      "trainer",
+      "student"
     ]
   }
 ]
