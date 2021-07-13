@@ -9,5 +9,6 @@
 4-) Identity Management, Dependency Injection, Fluent Validation, Fluent Mapping, ViewModel, Dto, ViewComponents, Jquery konuları proje içerisinde uygulanmıştır.
 
 5-) Admin kullanıcısına ait bilgiler
+
       Kullanıcı adı   : admin
-      PArola          : 12345  
+      Parola          : 12345  
