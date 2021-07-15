@@ -14,6 +14,9 @@ namespace OnlineAkademi.Web.Mappings
         {
             CreateMap<CourseDto, CourseVM>();
             CreateMap<CourseVM, CourseDto>();
+
+            CreateMap<ListCourseDto, ListCourseVM>();
+            CreateMap<ListCourseVM, ListCourseDto>();
         }
     }
 }

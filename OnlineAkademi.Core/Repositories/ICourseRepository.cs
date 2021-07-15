@@ -10,5 +10,9 @@ namespace OnlineAkademi.Core.Repositories
     public interface ICourseRepository:IRepository<Course>
     {
         Task<IEnumerable<Course>> GetCoursesWithName();
+
+        Task<IEnumerable<Course>> GetCourseWithNameAndStudents();
+
+        Task<Course> GetCourseWithNameAndStudentsById(int id);
     }
 }

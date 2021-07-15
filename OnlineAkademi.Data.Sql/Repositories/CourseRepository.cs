@@ -23,5 +23,28 @@ namespace OnlineAkademi.Data.Sql.Repositories
             return courses;
 
         }
+
+        public async Task<IEnumerable<Course>> GetCourseWithNameAndStudents()
+        {
+            var courses = await Context.Courses
+                .Include("Category")
+                .Include("CourseStudents")
+                .Include("Trainer")
+                .Where(c=>c.IsActive.Value)
+                .ToListAsync();
+            return courses;
+        }
+
+        public async Task<Course> GetCourseWithNameAndStudentsById(int id)
+        {
+            var course = await Context.Courses
+                .Include("Category")
+                .Include("CourseStudents")
+                .Include("Trainer")
+                .SingleOrDefaultAsync(c => c.Id == id);
+                
+            return course;
+        }
+
     }
 }

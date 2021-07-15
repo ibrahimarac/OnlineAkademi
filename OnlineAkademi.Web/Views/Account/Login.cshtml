@@ -41,6 +41,7 @@
                 <p class="login-box-msg">Sisteme giriş yapın</p>
 
                 <form asp-controller="Account" asp-action="Login" method="post">
+                    <input type="hidden" asp-for="ReturnUrl"/>
                     <div class="input-group mb-2">
                         <input asp-for="UserName" class="form-control"
                                placeholder="@Html.DisplayNameFor(l=>l.UserName)">

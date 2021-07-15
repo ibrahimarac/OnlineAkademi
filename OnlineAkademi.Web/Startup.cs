@@ -57,15 +57,6 @@ namespace OnlineAkademi.Web
                 options.IdleTimeout = TimeSpan.FromMinutes(5);//You can set Time   
             });
 
-            services.ConfigureApplicationCookie(opt =>
-            {
-                opt.Cookie.Name = "user";
-                opt.LoginPath = "/Account/Login";
-                // Cookie settings
-                opt.Cookie.HttpOnly = true;
-                opt.ExpireTimeSpan = TimeSpan.FromMinutes(10);
-                opt.SlidingExpiration = true;
-            });
 
         }
 

@@ -36,19 +36,22 @@ namespace OnlineAkademi.Web.Controllers
 
         [HttpGet]
         [Route("Account/Login")]
-        public IActionResult Login()
+        public IActionResult Login(string ReturnUrl)
         {
             if (HttpContext.HasCookie("username"))
             {
                 var model = new LoginVM
                 {
                     UserName = HttpContext.GetCookie("username"),
-                    RememberMe = true
+                    RememberMe = true,
+                    ReturnUrl=ReturnUrl
                 };
                 return View(model);
             };
 
-            return View();
+            return View(new LoginVM { 
+                ReturnUrl=ReturnUrl            
+            });
         }
 
         [HttpPost]
@@ -74,7 +77,10 @@ namespace OnlineAkademi.Web.Controllers
             if (!result)
                 return View(login).ShowMessage(JConfirmMessageType.Error, "Uyarı", "Kullanıcı adı veya parola hatalı.");
 
-            return RedirectToAction("Index", "Home");
+            if (login.ReturnUrl == null)
+                return RedirectToAction("Index", "Home");
+            else
+                return Redirect(login.ReturnUrl);
         }
 
         [HttpGet]
@@ -95,7 +101,7 @@ namespace OnlineAkademi.Web.Controllers
 
         [HttpPost]
         [Route("Account/Register")]
-        public async Task<IActionResult> Register(StudentVM studentVM,string ReturnUrl)
+        public async Task<IActionResult> Register(StudentVM studentVM)
         {
             if (!ModelState.IsValid)
                 return View(studentVM).ShowMessage(JConfirmMessageType.Warning, "Uyarı","Girilen bilgilerde bazı hatalar tespit edildi.");
@@ -114,7 +120,8 @@ namespace OnlineAkademi.Web.Controllers
                 UserName = studentVM.UserName,
                 Gender = studentVM.Gender
             });
-            //Öğrenciyi trainer rolüne ekliyorum.
+
+            //Öğrenciyi student rolüne ekliyorum.
             var addRoleResult = await Accounts.AddUserToRole(studentVM.UserName, "student");
             if (!addRoleResult)
                 return View(studentVM).ShowMessage(JConfirmMessageType.Error, "Hata", "Öğrenci role atanırken bir hata oluştu.");
@@ -131,11 +138,8 @@ namespace OnlineAkademi.Web.Controllers
 
                 //Öğrenciyi login yapalım
                 var result=await Accounts.SignInAsync(studentVM.UserName, studentVM.Password, true);
-                //Öğrencinin oturumu başarıyla açıldıysa talep ettiği sayfaya gönder
-                if (result)
-                {
-                    return Redirect(ReturnUrl);
-                }
+
+                return RedirectToAction("Index", "Home").ShowMessage(JConfirmMessageType.Success,"Hoşgeldiniz","Öğrenci kaydınınız başarıyla tamamlandı.");
             }
             
             return View(studentVM).ShowMessage(JConfirmMessageType.Error, "Hata", "Kullanıcı oluşturma işleminde hata(lar) var");

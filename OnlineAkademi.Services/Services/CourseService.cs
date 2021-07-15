@@ -6,6 +6,7 @@ using OnlineAkademi.Core.Domain.Entities;
 using OnlineAkademi.Core.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -65,6 +66,39 @@ namespace OnlineAkademi.Services.Services
             var courseDtos=Mapper.Map<IEnumerable<Course>,IEnumerable<CourseDto>> (courses);
             return courseDtos;
         }
+
+        public async Task<IEnumerable<ListCourseDto>> ListCourses()
+        {
+            var courses = await Database.CourseRepo.GetCourseWithNameAndStudents();
+            return courses.Select(c => new ListCourseDto
+            {
+                CategoryName=c.Category.Name,
+                Duration=c.Duration,
+                Name=c.Name,
+                Price=c.Price,
+                Quota=c.Quota,
+                StudentCount=c.CourseStudents.Count,
+                Trainer=string.Format("{0} {1}",c.Trainer.FirstName,c.Trainer.LastName),
+                Id=c.Id
+            });
+        }
+
+        public async Task<ListCourseDto> GetCourseDetail(int id)
+        {
+            var course = await Database.CourseRepo.GetCourseWithNameAndStudentsById(id);
+            return new ListCourseDto
+            {
+                CategoryName = course.Category.Name,
+                Duration = course.Duration,
+                Name = course.Name,
+                Price = course.Price,
+                Quota = course.Quota,
+                StudentCount = course.CourseStudents.Count,
+                Trainer = string.Format("{0} {1}", course.Trainer.FirstName, course.Trainer.LastName),
+                Id = course.Id
+            };
+        }
+
 
         public void UpdateCourse(CourseDto courseDto)
         {

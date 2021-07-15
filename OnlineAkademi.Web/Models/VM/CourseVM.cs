@@ -21,7 +21,7 @@ namespace OnlineAkademi.Web.Models.VM
         public string Name { get; set; }
 
         [Display(Name="Fiyatı (saatlik)")]
-        public decimal Price { get; set; }
+        public double Price { get; set; }
 
         [Display(Name="Süresi")]
         public int Duration { get; set; }

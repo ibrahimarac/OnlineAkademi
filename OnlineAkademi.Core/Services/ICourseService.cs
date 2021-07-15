@@ -19,5 +19,9 @@ namespace OnlineAkademi.Core.Services
         void UpdateCourse(CourseDto categoryDto);
 
         void DeleteCourse(string courseId);
+
+        Task<IEnumerable<ListCourseDto>> ListCourses();
+
+        Task<ListCourseDto> GetCourseDetail(int id);
     }
 }

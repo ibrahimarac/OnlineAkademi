@@ -6,7 +6,7 @@
     "roles": [
       "guest",
       "admin",
-      "user"
+      "student"
     ]
   },
   {
@@ -14,12 +14,12 @@
     "controller": "Course",
     "roles": [
       "guest",
-      "user"
+      "student"
     ],
     "submenu": [
       {
         "title": "Kayýtlý Kurslar",
-        "action": "ListCourseDetail"
+        "action": "ListCourses"
       }
     ]
   },
@@ -91,11 +91,11 @@
     "title": "Kurs Ýþlemleri",
     "controller": "Student",
     "roles": [
-      "trainer"
+      "student"
     ],
     "submenu": [
       {
-        "title": "Kayýtlý Kurslarým",
+        "title": "Kurslarým",
         "action": "ListCourses"
       }
     ]

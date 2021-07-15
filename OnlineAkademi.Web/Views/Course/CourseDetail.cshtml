@@ -1,0 +1,72 @@
+﻿@model OnlineAkademi.Web.Models.VM.ListCourseVM
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<div>
+    <h4>Eğitime Ait Bilgiler</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Trainer)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Trainer)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Duration)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Duration)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Quota)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Quota)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StudentCount)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StudentCount)
+        </dd>
+    </dl>
+    <div class="row">
+        <div class="col-sm-6">
+            @{
+                if (Model.StudentCount < Model.Quota)
+                {
+                    <a class="btn btn-outline-success" asp-controller="Course" asp-action="JoinCourse" asp-route-id="@Model.Id">Eğitimi Al</a>
+                }
+                else
+                {
+                    <a class="btn btn-outline-secondary disabled">Bu Eğitim Dolu</a>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+
+
+

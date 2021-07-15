@@ -4,13 +4,13 @@ using System.Text;
 
 namespace OnlineAkademi.Core.Domain.Dto
 {
-    public class CourseDto:TrackableDto
+    public class ListCourseDto
     {
+        public int Id { get; set; }
+
         public string CategoryName { get; set; }
 
-        public int CategoryId { get; set; }
-
-        public string TrainerId { get; set; }
+        public string Trainer { get; set; }
 
         public string Name { get; set; }
 
@@ -19,5 +19,7 @@ namespace OnlineAkademi.Core.Domain.Dto
         public int Duration { get; set; }
 
         public int Quota { get; set; }
+
+        public int StudentCount { get; set; }
     }
 }

@@ -14,5 +14,7 @@ namespace OnlineAkademi.Web.Models.VM
         public string Password { get; set; }
         [Display(Name ="Beni hatırla")]
         public bool RememberMe { get; set; }
+        [ScaffoldColumn(false)]
+        public string ReturnUrl { get; set; }
     }
 }

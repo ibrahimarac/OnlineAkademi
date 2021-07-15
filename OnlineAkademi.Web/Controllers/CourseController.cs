@@ -32,7 +32,6 @@ namespace OnlineAkademi.Web.Controllers
 
         [HttpGet]
         [Route("Course/List")]
-        [Authorize("student")]
         public async Task<IActionResult> List()
         {
             //Dto to VM
@@ -114,6 +113,26 @@ namespace OnlineAkademi.Web.Controllers
 
             return RedirectToAction("List")
                 .ShowMessage(JConfirmMessageType.Success, "İşlem başarılı", "Kurs başarıyla güncellendi");
+        }
+
+        [HttpGet]
+        [Route("Course/ListCourses")]
+        [AllowAnonymous]
+        public async Task<IActionResult> ListCourses()
+        {
+            var courseDtos = await Courses.ListCourses();
+            var courseVM= Mapper.Map<IEnumerable<ListCourseDto>, IEnumerable<ListCourseVM>>(courseDtos);
+            return View(courseVM);
+        }
+
+        [HttpGet]
+        [Route("Course/{name}/{id:int}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> CourseDetail(int id,string name)
+        {
+            var courseDto = await Courses.GetCourseDetail(id);
+            var courseVM = Mapper.Map<ListCourseDto, ListCourseVM>(courseDto);
+            return View(courseVM);
         }
 
 
