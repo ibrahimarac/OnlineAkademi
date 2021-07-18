@@ -9,5 +9,7 @@ namespace OnlineAkademi.Core.Services
     public interface IStudentService
     {
         void AddStudent(StudentDto student);
+
+        void BuyCourse(string studentId, int? courseId);
     }
 }

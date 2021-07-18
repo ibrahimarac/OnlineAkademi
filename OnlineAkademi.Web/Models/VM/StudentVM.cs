@@ -33,7 +33,7 @@ namespace OnlineAkademi.Web.Models.VM
         [Display(Name = "Yaşı")]
         public int Age { get; set; }
 
-        [Display(Name = "Durumu")]
-        public bool IsActive { get; set; }
+        public string ReturnUrl { get; set; }
+
     }
 }

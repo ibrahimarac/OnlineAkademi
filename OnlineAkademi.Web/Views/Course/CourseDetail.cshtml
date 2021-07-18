@@ -30,19 +30,19 @@
             @Html.DisplayNameFor(model => model.Price)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
+            @Model.Price.ToString("c2")
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Duration)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Duration)
+            @Html.DisplayFor(model => model.Duration) saat
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Quota)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Quota)
+            @Html.DisplayFor(model => model.Quota) kişi
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.StudentCount)
@@ -56,7 +56,7 @@
             @{
                 if (Model.StudentCount < Model.Quota)
                 {
-                    <a class="btn btn-outline-success" asp-controller="Course" asp-action="JoinCourse" asp-route-id="@Model.Id">Eğitimi Al</a>
+                    <a class="btn btn-outline-success" asp-controller="Student" asp-action="BuyCourse" asp-route-id="@Model.Id">Eğitimi Al</a>
                 }
                 else
                 {

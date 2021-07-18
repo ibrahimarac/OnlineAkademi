@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<OnlineAkademi.Web.Models.VM.ListCourseVM>
 
-@{ 
+@{
     ViewBag.Title = "Kayıtlı Kurslarımız";
 }
 
@@ -13,9 +13,10 @@
             {
                 <div class="col-sm-4">
                     <div class="card bg-light">
-                        <h5 class="card-header">@string.Format("{0} ( {1} )", course.Name,course.CategoryName)</h5>
+                        <h5 class="card-header" style="min-height:70px">
+                            @string.Format("{0} ( {1} )", course.Name, course.CategoryName)
+                        </h5>
                         <div class="card-body">
-                            <h6 class="card-title text-red"></h6>
                             <h6>Süre</h6>
                             <p>@course.Duration saat</p>
                             <h6>Kişi Kapasitesi</h6>
@@ -23,7 +24,21 @@
                             <h6>Kayıtlı Kişi Sayısı</h6>
                             <p>@course.StudentCount</p>
                         </div>
-                        <a class="btn btn-outline-primary" asp-action="CourseDetail" asp-controller="Course" asp-route-id="@course.Id" asp-route-name="@course.Name.ParseStringToFormalUrl('-')">Detaylar</a>
+                        <div class="card-footer">
+                            <a class="btn btn-outline-primary" asp-action="CourseDetail" asp-controller="Course" asp-route-id="@course.Id" asp-route-name="@course.Name.ParseStringToFormalUrl('-')">Detaylar</a>
+                            @{ 
+                                if(course.Quota>course.StudentCount)
+                                {
+                                    <a class="btn btn-outline-primary" 
+                                       asp-action="BuyCourse" 
+                                       asp-controller="Student" 
+                                       asp-route-id="@course.Id">Satın Al</a>
+                                }
+                            }
+                            
+                        </div>
+
+
                     </div>
                 </div>
             }

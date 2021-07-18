@@ -15,7 +15,7 @@ namespace OnlineAkademi.Web.Validators
         {
             RuleFor(c => c.UserName)
                 .NotEmpty().WithMessage("Kullanıcı adı boş bırakılamaz.")
-                .MaximumLength(10).WithMessage("Kullanıcı adı en fazla 10 karakter olablir.");
+                .MaximumLength(10).WithMessage("Kullanıcı adı en fazla 10 karakter olabilir.");
             RuleFor(s => s.Email)
                 .NotEmpty().WithMessage("Eposta adresi boş bırakılamaz.")
                 .MaximumLength(150).WithMessage("Eposta adresi en fazla 150 karakter olablir.")

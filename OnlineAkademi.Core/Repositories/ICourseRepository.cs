@@ -11,7 +11,7 @@ namespace OnlineAkademi.Core.Repositories
     {
         Task<IEnumerable<Course>> GetCoursesWithName();
 
-        Task<IEnumerable<Course>> GetCourseWithNameAndStudents();
+        Task<IEnumerable<Course>> GetCourseWithNameAndStudents(string studentId);
 
         Task<Course> GetCourseWithNameAndStudentsById(int id);
     }

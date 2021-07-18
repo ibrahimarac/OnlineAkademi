@@ -120,7 +120,18 @@ namespace OnlineAkademi.Web.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> ListCourses()
         {
-            var courseDtos = await Courses.ListCourses();
+            //Oturum açan bir öğrenci için kurs listesi hazırlanıyorsa
+            //öğrencinin kayıtlı olduğu kursları ona göstermeyelim.
+            IEnumerable<ListCourseDto> courseDtos = null;
+            if (User.IsInRole("student"))
+            {
+                courseDtos=await Courses.ListCourses(User.Identity.Name);
+            }
+            else
+            {
+                courseDtos = await Courses.ListCourses();
+            }
+
             var courseVM= Mapper.Map<IEnumerable<ListCourseDto>, IEnumerable<ListCourseVM>>(courseDtos);
             return View(courseVM);
         }

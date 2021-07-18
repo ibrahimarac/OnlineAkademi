@@ -27,7 +27,7 @@ namespace OnlineAkademi.Web.Models.VM
         [Display(Name = "Kontenjan")]
         public int Quota { get; set; }
 
-        [Display(Name = "Kayıtlı Öprenci Sayısı")]
+        [Display(Name = "Kayıtlı Öğrenci Sayısı")]
         public int StudentCount { get; set; }
     }
 }

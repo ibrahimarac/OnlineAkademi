@@ -19,6 +19,7 @@ namespace OnlineAkademi.Data.Sql
         public DbSet<Course> Courses { get; set; }
         public DbSet<Trainer> Trainers { get; set; }
         public DbSet<CourseMaterial> Materials { get; set; }
+        public DbSet<Student> Students { get; set; }
         public DbSet<StudentInCourse> StudentInCourses { get; set; }
         public DbSet<Error> Errors { get; set; }
         public DbSet<Log> CrudLogs { get; set; }

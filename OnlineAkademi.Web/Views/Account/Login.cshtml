@@ -84,7 +84,7 @@
                 </form>
 
                 <p class="mb-0 mt-5">
-                    <a asp-action="Register" asp-controller="Account" class="text-center">
+                    <a asp-action="Register" asp-controller="Account" asp-route-ReturnUrl="@ViewContext.HttpContext.Request.Query["ReturnUrl"]" class="text-center">
                         Hizmetlerden faydalanmak için kaydolun
                     </a>
                 </p>

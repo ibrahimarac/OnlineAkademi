@@ -94,7 +94,7 @@ namespace OnlineAkademi.Web.Controllers
 
         [HttpGet]
         [Route("Account/Register")]
-        public IActionResult Register()
+        public IActionResult Register(string ReturnUrl)
         {            
             return View();
         }
@@ -133,17 +133,20 @@ namespace OnlineAkademi.Web.Controllers
             {
                 //VM to Dto
                 var trainerDto = Mapper.Map<StudentVM, StudentDto>(studentVM);
-
+                trainerDto.IsActive = true;
                 Students.AddStudent(trainerDto);
 
                 //Öğrenciyi login yapalım
                 var result=await Accounts.SignInAsync(studentVM.UserName, studentVM.Password, true);
 
+                //Eğer kullanıcı yetki isteyen bir sayfayı talep etti ve oturum açılmışsa
+                if (studentVM.ReturnUrl != null)
+                    return Redirect(studentVM.ReturnUrl);
+
                 return RedirectToAction("Index", "Home").ShowMessage(JConfirmMessageType.Success,"Hoşgeldiniz","Öğrenci kaydınınız başarıyla tamamlandı.");
             }
-            
+                        
             return View(studentVM).ShowMessage(JConfirmMessageType.Error, "Hata", "Kullanıcı oluşturma işleminde hata(lar) var");
-
         }
 
     }

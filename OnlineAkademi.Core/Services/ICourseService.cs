@@ -20,7 +20,7 @@ namespace OnlineAkademi.Core.Services
 
         void DeleteCourse(string courseId);
 
-        Task<IEnumerable<ListCourseDto>> ListCourses();
+        Task<IEnumerable<ListCourseDto>> ListCourses(string studentId=null);
 
         Task<ListCourseDto> GetCourseDetail(int id);
     }

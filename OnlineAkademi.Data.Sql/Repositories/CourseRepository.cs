@@ -24,14 +24,24 @@ namespace OnlineAkademi.Data.Sql.Repositories
 
         }
 
-        public async Task<IEnumerable<Course>> GetCourseWithNameAndStudents()
+        public async Task<IEnumerable<Course>> GetCourseWithNameAndStudents(string studentId)
         {
-            var courses = await Context.Courses
+            List<Course> courses=null;
+            if(studentId==null)
+                courses = await Context.Courses
                 .Include("Category")
                 .Include("CourseStudents")
                 .Include("Trainer")
                 .Where(c=>c.IsActive.Value)
                 .ToListAsync();
+            else
+                courses= await Context.Courses
+                .Include("Category")
+                .Include("CourseStudents")
+                .Include("Trainer")
+                .Where(c => c.IsActive.Value&&c.CourseStudents.Count(sc=>sc.StudentId==studentId)==0)
+                .ToListAsync();
+
             return courses;
         }
 

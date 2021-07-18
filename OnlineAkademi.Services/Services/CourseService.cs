@@ -67,9 +67,9 @@ namespace OnlineAkademi.Services.Services
             return courseDtos;
         }
 
-        public async Task<IEnumerable<ListCourseDto>> ListCourses()
+        public async Task<IEnumerable<ListCourseDto>> ListCourses(string studentId=null)
         {
-            var courses = await Database.CourseRepo.GetCourseWithNameAndStudents();
+            var courses = await Database.CourseRepo.GetCourseWithNameAndStudents(studentId);
             return courses.Select(c => new ListCourseDto
             {
                 CategoryName=c.Category.Name,
@@ -78,7 +78,7 @@ namespace OnlineAkademi.Services.Services
                 Price=c.Price,
                 Quota=c.Quota,
                 StudentCount=c.CourseStudents.Count,
-                Trainer=string.Format("{0} {1}",c.Trainer.FirstName,c.Trainer.LastName),
+                Trainer=c.Trainer==null?"Eğitmen Belirlenmemiş": string.Format("{0} {1}",c.Trainer.FirstName,c.Trainer.LastName),
                 Id=c.Id
             });
         }
@@ -94,7 +94,7 @@ namespace OnlineAkademi.Services.Services
                 Price = course.Price,
                 Quota = course.Quota,
                 StudentCount = course.CourseStudents.Count,
-                Trainer = string.Format("{0} {1}", course.Trainer.FirstName, course.Trainer.LastName),
+                Trainer = course.Trainer==null?"Eğitmen Belirlenmemiş":string.Format("{0} {1}", course.Trainer.FirstName, course.Trainer.LastName),
                 Id = course.Id
             };
         }

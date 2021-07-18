@@ -30,5 +30,29 @@ namespace OnlineAkademi.Services.Services
             Database.StudentRepo.Insert(student);
             Database.Commit();
         }
+
+        public void BuyCourse(string studentId, int? courseId)
+        {
+            if (courseId == null)
+                throw new ParameterException("Id", "Student", "Kurs numarası gönderilmedi.");
+            var course = Database.CourseRepo.GetById(courseId.Value);
+            if (course == null)
+                throw new ParameterException("Id", "Student", "Gönderilen kurs numarası geçerli değil.");
+
+            if (studentId == null)
+                throw new ParameterException("Id", "Student", "Öğrenci numarası gönderilmedi.");
+            var student = Database.StudentRepo.GetSingle(s => s.UserName == studentId);
+            if (student == null)
+                throw new ParameterException("Id", "Student", "Gönderilen öğrenci numarası geçerli değil.");
+
+            //Öğrenciyi ilgili kursa ekleyelim
+            var studentWithCourses=Database.StudentRepo.GetStudentWithCourses(studentId);
+            studentWithCourses.StudentCourses.Add(new StudentInCourse { 
+                StudentId=studentId,
+                CourseId=courseId.Value
+            });
+
+            Database.Commit();
+        }
     }
 }
