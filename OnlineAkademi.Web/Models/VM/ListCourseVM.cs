@@ -27,6 +27,12 @@ namespace OnlineAkademi.Web.Models.VM
         [Display(Name = "Kontenjan")]
         public int Quota { get; set; }
 
+        [Display(Name = "Başlangıç Tarihi")]
+        public DateTime StartDate { get; set; }
+
+        [Display(Name = "Bitiş Tarihi")]
+        public DateTime EndDate { get; set; }
+
         [Display(Name = "Kayıtlı Öğrenci Sayısı")]
         public int StudentCount { get; set; }
     }

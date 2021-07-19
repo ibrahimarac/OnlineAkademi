@@ -9,5 +9,10 @@ namespace OnlineAkademi.Core.Repositories
     public interface IStudentRepository:IRepository<Student>
     {
         Student GetStudentWithCourses(string studentId);
+
+        IEnumerable<Course> GetActiveCoursesForStudents(string studentId);
+
+        IEnumerable<Course> GetFinishedCoursesForStudents(string studentId);
+
     }
 }

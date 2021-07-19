@@ -25,5 +25,12 @@ namespace OnlineAkademi.Utils.Extensions
                 .Replace('ı', 'i');
         }
 
+        public static bool UrlIsWebAddress(this string path)
+        {
+            Uri uri = new Uri(path);
+            return uri.Scheme.Contains("http") || uri.Scheme.Contains("http");
+        }
+
+
     }
 }

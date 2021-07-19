@@ -24,13 +24,5 @@ namespace OnlineAkademi.Web.Models.VM
         public IFormFile UploadedFile { get; set; }
 
         public string Url { get; set; }
-
-        public string CreateUser { get; set; }
-
-        public string LastupUser { get; set; }
-
-        public DateTime CreateDate { get; set; }
-
-        public DateTime LastupDate { get; set; }
     }
 }

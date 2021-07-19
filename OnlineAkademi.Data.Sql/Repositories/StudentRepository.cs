@@ -22,5 +22,20 @@ namespace OnlineAkademi.Data.Sql.Repositories
             var student=Context.Students.Include("StudentCourses").SingleOrDefault(s=>s.UserName==studentId);
             return student;
         }
+
+        public IEnumerable<Course> GetActiveCoursesForStudents(string studentId)
+        {
+            var courses = Context.Courses.Include("Trainer").Include("CourseStudents").Where(c => c.CourseStudents.Count(cs => cs.StudentId == studentId) > 0 && c.EndDate<=DateTime.Now);
+
+            return courses;
+        }
+
+        public IEnumerable<Course> GetFinishedCoursesForStudents(string studentId)
+        {
+            var courses = Context.Courses.Include("Trainer").Include("CourseStudents").Where(c => c.CourseStudents.Count(cs => cs.StudentId == studentId) > 0 && c.EndDate > DateTime.Now);
+
+            return courses;
+        }
+
     }
 }

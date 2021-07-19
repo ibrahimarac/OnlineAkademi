@@ -14,9 +14,12 @@ namespace OnlineAkademi.Core.Mappers
             //Entity To Dto
             CreateMap<Course, CourseDto>()
                 .ForMember(dto=>dto.CategoryName,e=>e.MapFrom(e=>e.Category.Name));
+            CreateMap<Course, ListCourseDto>()
+                .ForMember(dto => dto.Trainer, e => e.MapFrom(e => e.Trainer.FirstName+" "+e.Trainer.LastName));
 
             //Dto to Entity
             CreateMap<CourseDto, Course>();
+            CreateMap<ListCourseDto, Course>();
         }
     }
 }

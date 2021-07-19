@@ -19,5 +19,9 @@ namespace OnlineAkademi.Core.Domain.Dto
         public int Duration { get; set; }
 
         public int Quota { get; set; }
+
+        public DateTime StartDate { get; set; }
+
+        public DateTime EndDate { get; set; }
     }
 }

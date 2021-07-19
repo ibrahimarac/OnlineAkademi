@@ -23,6 +23,10 @@ namespace OnlineAkademi.Core.Domain.Entities
 
         public int Quota { get; set; }
 
+        public DateTime StartDate { get; set; }
+
+        public DateTime EndDate { get; set; }
+
         public string CreateUser { get; set; }
 
         public string LastupUser { get; set; }

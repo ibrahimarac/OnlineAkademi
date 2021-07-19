@@ -1,14 +1,15 @@
-﻿@model IEnumerable<OnlineAkademi.Web.Models.VM.CourseVM>
+﻿@model IEnumerable<OnlineAkademi.Web.Models.VM.ListCourseVM>
 
 @{
-    ViewData["Title"] = "Atanmış Olduğunuz Eğitimler";
+    ViewData["Title"] = "Tamamlanmış Eğitimleriniz";
 }
+
 
 @{
 
     if (Model.Count() == 0)
     {
-        <p class="text-danger m-3">Atanmış olduğunuz herhangi bir kurs bulunamadı.</p>
+        <p class="text-danger m-3">Belirtilen kriterlere uygun bir kayıt bulunamadı.</p>
     }
     else
     {
@@ -19,6 +20,9 @@
                         @Html.DisplayNameFor(model => model.Name)
                     </th>
                     <th>
+                        @Html.DisplayNameFor(model => model.Trainer)
+                    </th>
+                    <th>
                         @Html.DisplayNameFor(model => model.Duration)
                     </th>
                     <th>
@@ -27,10 +31,7 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Price)
                     </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.IsActive)
-                    </th>
-                    <th></th>
+                    <th>Dokümanlar</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,6 +40,9 @@
                     <tr>
                         <td>
                             @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Trainer)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Duration)
@@ -50,10 +54,7 @@
                             @Html.DisplayFor(modelItem => item.Price)
                         </td>
                         <td>
-                            @((item.IsActive)?"Aktif":"Pasif")
-                        </td>
-                        <td>
-                            <a asp-action="ListMaterials" asp-controller="CourseMaterial" asp-route-id="@item.Id"
+                            <a asp-action="CourseMaterials" asp-controller="Student" asp-route-id="@item.Id"
                                class="btn btn-success">
                                 <i class="fa fa-list"></i>
                             </a>
@@ -63,6 +64,9 @@
             </tbody>
         </table>
     }
+
 }
+
+
 
 

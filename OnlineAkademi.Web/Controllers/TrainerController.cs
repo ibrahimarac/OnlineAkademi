@@ -169,7 +169,7 @@ namespace OnlineAkademi.Web.Controllers
         public async Task<IActionResult> TrainerCourseList(string id)
         {
             if (id == null)
-                return RedirectToAction("List").ShowMessage(JConfirmMessageType.Error, "Uyarı", "Eğitmen kmlik no gönderilmedi.");
+                return RedirectToAction("List").ShowMessage(JConfirmMessageType.Error, "Uyarı", "Eğitmen kimlik no gönderilmedi.");
 
             //Şu an üzerinde kurs işlemleri yapılan kullanıcıyı Session'da saklayalım.
             HttpContext.Session.SetString("trainer", id);

@@ -9,6 +9,7 @@ namespace OnlineAkademi.Core.Services
     public interface IMaterialService
     {
         IEnumerable<CourseDto> GetCourseByTrainer(string userName);
+
         IEnumerable<MaterialDto> GetCourseMaterials(int? courseId);
 
         void DeleteMaterial(string id);

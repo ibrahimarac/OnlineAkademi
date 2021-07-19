@@ -79,7 +79,6 @@ namespace OnlineAkademi.Web.Controllers
                 .ShowMessage(JConfirmMessageType.Success, "Başarılı", "<b>Kurs</b> başarıyla eklendi.");
         }
 
-
         [HttpGet]
         [Route("Course/Edit/{id}")]
         public async Task<IActionResult> Edit(string id)
@@ -107,6 +106,8 @@ namespace OnlineAkademi.Web.Controllers
             courseDto.Duration = courseVM.Duration;
             courseDto.Price = courseVM.Price;
             courseDto.Quota = courseVM.Quota;
+            courseDto.StartDate = courseVM.StartDate;
+            courseDto.EndDate = courseVM.EndDate;
             courseDto.IsActive = courseVM.IsActive;
 
             Courses.UpdateCourse(courseDto);
@@ -146,7 +147,18 @@ namespace OnlineAkademi.Web.Controllers
             return View(courseVM);
         }
 
+        [HttpPost]
+        [Route("Course/Delete")]
+        public IActionResult Delete([Bind("Id")] JQueryDeleteObject model)
+        {
+            Courses.DeleteCourse(model.Id);
 
+            return Json(new JsonResponse
+            {
+                Status = JsonResponseStatus.Ok,
+                Message = "Kurs başarıyla silindi"
+            });
+        }
 
     }
 }

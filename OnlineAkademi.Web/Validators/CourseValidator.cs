@@ -26,6 +26,15 @@ namespace OnlineAkademi.Web.Validators
 
             RuleFor(c => c.Quota)
                 .NotEmpty().WithMessage("Kursun maksimum kişi sayısı girilmelidir.");
+
+            RuleFor(c => c.StartDate)
+                .NotEmpty().WithMessage("Kurs başlama tarihi girilmelidir.");
+
+
+            RuleFor(c => c.EndDate)
+                .NotEmpty().WithMessage("Kurs bitiş tarihi girilmelidir.")
+                .GreaterThanOrEqualTo(c => c.StartDate).WithMessage("Bitiş tarihi, başlangıç tarihinden ileri bir tarih olmalıdır.");
+
         }
     }
 }

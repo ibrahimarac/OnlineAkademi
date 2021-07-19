@@ -29,6 +29,14 @@ namespace OnlineAkademi.Web.Models.VM
         [Display(Name = "Maksimum kişi sayısı")]
         public int Quota { get; set; }
 
+        [Display(Name = "Başlangıç Tarihi")]
+        [DataType(DataType.Date)]
+        public DateTime StartDate { get; set; }
+
+        [Display(Name = "Bitiş Tarihi")]
+        [DataType(DataType.Date)]
+        public DateTime EndDate { get; set; }
+
         [Display(Name = "Aktif")]
         public bool IsActive { get; set; }
     }

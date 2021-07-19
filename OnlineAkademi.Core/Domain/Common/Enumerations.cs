@@ -39,10 +39,36 @@ namespace OnlineAkademi.Core.Domain.Common
     {
         [Display(Name = "Pdf Dosyası")]
         Pdf,
-        [Display(Name = "Video Dosyası")]
-        Video,
+        [Display(Name ="Zip Dosyası")]
+        Zip,
+        [Display(Name ="Word Dosyası (doc)")]
+        Doc,
+        [Display(Name = "Word Dosyası (docx)")]
+        Docx,
+        [Display(Name = "Word Dosyası (xls)")]
+        Xls,
+        [Display(Name = "Word Dosyası (xlsx)")]
+        Xlsx,
+        [Display(Name = "Word Dosyası (ppt)")]
+        Ppt,
+        [Display(Name = "Word Dosyası (pptx)")]
+        Pptx,
+        [Display(Name = "Png Dosyası")]
+        Png,
+        [Display(Name = "Gif Dosyası")]
+        Gif,
+        [Display(Name = "Jpg Dosyası")]
+        Jpg,
+        [Display(Name = "Mp3 Dosyası")]
+        Mp3,
+        [Display(Name = "Mp4 Dosyası")]
+        Mp4,
+        [Display(Name = "Avi Dosyası")]
+        Avi,
         [Display(Name = "Bağlantı Adresi")]
-        Link
+        Link,
+        [Display(Name = "Metin Dosyası (txt)")]
+        Text
     }
 
     public enum TrainerType

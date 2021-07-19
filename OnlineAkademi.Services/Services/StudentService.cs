@@ -13,12 +13,12 @@ using OnlineAkademi.Core.Domain.Common;
 
 namespace OnlineAkademi.Services.Services
 {
-    public class StudentsService : IStudentService
+    public class StudentService : IStudentService
     {
         private readonly IUnitWork Database;
         private readonly IMapper Mapper;
         
-        public StudentsService(IUnitWork uWork, IMapper mapper)
+        public StudentService(IUnitWork uWork, IMapper mapper)
         {
             Database = uWork;
             Mapper = mapper;
@@ -54,5 +54,20 @@ namespace OnlineAkademi.Services.Services
 
             Database.Commit();
         }
+
+        public IEnumerable<ListCourseDto> GetActiveCoursesForStudent(string studentId)
+        {
+            var courses = Database.StudentRepo.GetActiveCoursesForStudents(studentId);
+            var coursesDto = Mapper.Map<IEnumerable<Course>, IEnumerable<ListCourseDto>>(courses);
+            return coursesDto;
+        }
+
+        public IEnumerable<ListCourseDto> GetFinishedCoursesForStudent(string studentId)
+        {
+            var courses = Database.StudentRepo.GetFinishedCoursesForStudents(studentId);
+            var coursesDto = Mapper.Map<IEnumerable<Course>, IEnumerable<ListCourseDto>>(courses);
+            return coursesDto;
+        }
+
     }
 }

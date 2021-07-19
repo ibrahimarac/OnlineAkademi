@@ -95,8 +95,12 @@
     ],
     "submenu": [
       {
-        "title": "Kurslarým",
-        "action": "ListCourses"
+        "title": "Devam Eden Kurslarým",
+        "action": "ActiveCourses"
+      },
+      {
+        "title": "Tamamlanmýþ Kurslarým",
+        "action": "FinishedCourses"
       }
     ]
   }

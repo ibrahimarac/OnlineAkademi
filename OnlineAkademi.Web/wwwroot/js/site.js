@@ -3,17 +3,17 @@
 
 var Status = {
     Ok: 1,
-    Error:2
+    Error: 2
 }
 
-$.ShowConfirm = function (title,content,okText,okAction) {
+$.ShowConfirm = function (title, content, okText, okAction) {
 
     $.confirm({
         title: title,
         content: content,
         type: 'blue',
         typeAnimated: true,
-        closeIcon:true,
+        closeIcon: true,
         buttons: {
             ok: {
                 text: okText,
@@ -72,13 +72,15 @@ $.AjaxDelete = function (trigger, url) {
                 $(trigger).parent().parent().hide(300, function () {
                     $(this).remove();
                     $.ShowSuccess('İşlem başarılı', result.message)
-                })                
-            }                
+                })
+            }
             if (result.status == Status.Error)
-                $.ShowError('Hata oluştu',result.message)
+                $.ShowError('Hata oluştu', result.message)
         },
         error: function (xhr, status, error) {
             $.ShowError('Hata oluştu', error.error)
         }
     })
 }
+
+
